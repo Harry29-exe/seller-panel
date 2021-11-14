@@ -7,24 +7,27 @@ import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
 import TestComponent1 from "./molecules/TestComponent1";
 import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
+import { AuthContext } from "./contexts/AuthContext";
+import Chart from "./molecules/Chart";
 
 export const App = () => (
     <ChakraProvider theme={theme}>
-        <BrowserRouter>
+        <AuthContext.Provider value={null} >
+            <BrowserRouter>
 
-            <Navbar routes={[
-                {name: "Home", path: "/"},
-                {name: "Buyers opinions", path: "/buyers-opinions"}
-            ]
-            }/>
+                <Navbar routes={[
+                    {name: "Home", path: "/"},
+                    {name: "Buyers opinions", path: "/buyers-opinions"}
+                ]
+                }/>
 
-            <Routes>
-                <Route path={"/"} element={<TestComponent1/>}/>
-                <Route path={"/buyers-opinions"} element={<TestComponent2/>}/>
-            </Routes>
-        </BrowserRouter>
+                <Routes>
+                    <Route path={"/"} element={<Chart/>}/>
+                    <Route path={"/buyers-opinions"} element={<TestComponent2/>}/>
+                </Routes>
+            </BrowserRouter>
 
-
+        </AuthContext.Provider>
     </ChakraProvider>
 )
 

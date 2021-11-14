@@ -21,13 +21,14 @@ export interface MenuProps {
 
 const Navbar = (props: MenuProps) => {
     let bgColor = useColorModeValue("gray.100", "gray.800");
+    let shadowColor = useColorModeValue("#aaa", "#000")
     let navbarType = useBreakpointValue(["phone", "normal"]);
     const {pathname} = useLocation();
 
     return (
         <HStack w="100vw" h="70px" px={4} py={2}
                 bg={bgColor}
-                // textShadow={"1px 1px #ffffff88"}
+                shadow={`0px 2px 8px 0px ${shadowColor}`}
                 fontSize={"3xl"} fontWeight={"bold"}>
             {navbarType === "phone"?
                 <>
