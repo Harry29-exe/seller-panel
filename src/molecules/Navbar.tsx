@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    AccordionButton,
     Box,
     Button, Center,
     Drawer,
@@ -14,6 +15,7 @@ import {
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import NavbarLink, {NavbarLinkProps} from "../atomics/NavbarLink";
 import {useLocation, useMatch, useResolvedPath} from "react-router-dom";
+import AccountButton from "../atomics/AccountButton";
 
 export interface MenuProps {
     routes: NavbarLinkProps[]
@@ -49,6 +51,7 @@ const Navbar = (props: MenuProps) => {
 
             <HStack flexGrow={0}>
                 <ColorModeSwitcher justifySelf="flex-end" />*
+                <AccountButton/>
             </HStack>
         </HStack>
     );

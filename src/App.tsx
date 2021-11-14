@@ -8,7 +8,7 @@ import TestComponent1 from "./molecules/TestComponent1";
 import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
 import { AuthContext } from "./contexts/AuthContext";
-import Chart from "./molecules/Chart";
+import Chart from "./atomics/Chart";
 
 export const App = () => (
     <ChakraProvider theme={theme}>
