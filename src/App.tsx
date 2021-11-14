@@ -13,8 +13,8 @@ export const App = () => (
         <BrowserRouter>
 
             <Navbar routes={[
-                {name: "home", path: "/"},
-                {name: "buyers opinions", path: "/buyers-opinions"}
+                {name: "Home", path: "/"},
+                {name: "Buyers opinions", path: "/buyers-opinions"}
             ]
             }/>
 

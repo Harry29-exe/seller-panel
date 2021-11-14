@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Box,
-    Button,
+    Button, Center,
     Drawer,
     DrawerContent,
     DrawerOverlay,
@@ -13,26 +13,34 @@ import {
 } from "@chakra-ui/react";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import NavbarLink, {NavbarLinkProps} from "../atomics/NavbarLink";
+import {useLocation, useMatch, useResolvedPath} from "react-router-dom";
 
 export interface MenuProps {
     routes: NavbarLinkProps[]
 }
 
 const Navbar = (props: MenuProps) => {
-    let bgColor = useColorModeValue("gray.300", "gray.800");
-    let navbarType = useBreakpointValue(["phone", "normal"])
+    let bgColor = useColorModeValue("gray.100", "gray.800");
+    let navbarType = useBreakpointValue(["phone", "normal"]);
+    const {pathname} = useLocation();
 
     return (
-        <HStack w="100vw" h={["50px", "70px", null, "50px"]} px={4} py={2}
+        <HStack w="100vw" h="70px" px={4} py={2}
                 bg={bgColor}
-                fontSize={"lg"} fontWeight={"bold"}>
+                // textShadow={"1px 1px #ffffff88"}
+                fontSize={"3xl"} fontWeight={"bold"}>
             {navbarType === "phone"?
-                <MobileNavbar routes={props.routes}/>
+                <>
+                    <MobileNavbar routes={props.routes}/>
+                    <Box flexGrow={4}/>
+                </>
                 :
-                <HStack flexGrow={4} spacing={5}>
+                <HStack flexGrow={4} spacing={[10, null, 10]}>
                     {
                         props.routes.map(route =>
-                            <NavbarLink name={route.name} path={route.path}/>
+                            <Center>
+                                <NavbarLink name={route.name} path={route.path} isActive={route.path === pathname}/>
+                            </Center>
                         )
                     }
                 </HStack>
@@ -47,6 +55,7 @@ const Navbar = (props: MenuProps) => {
 
 const MobileNavbar = (props: MenuProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const {pathname} = useLocation();
 
     return (
         <>
@@ -55,10 +64,11 @@ const MobileNavbar = (props: MenuProps) => {
                     placement="right" size="full">
                 <DrawerOverlay/>
                 <DrawerContent>
-                    <VStack onClick={onClose}>
+                    <VStack onClick={onClose} fontSize="4xl" fontWeight="bold" spacing={0} py={5}>
                         {
                             props.routes.map(
-                                route => <NavbarLink name={route.name} path={route.path}/>
+                                route => <NavbarLink name={route.name} path={route.path}
+                                                     isActive={pathname === route.path}/>
                             )
                         }
                     </VStack>

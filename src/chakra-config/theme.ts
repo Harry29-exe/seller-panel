@@ -1,8 +1,10 @@
 import {extendTheme, useColorModeValue} from "@chakra-ui/react";
-import Colors from "./Colors";
+import {inspect} from "util";
+import {colors} from "./Colors"
 
-export default extendTheme({
-    Colors,
+export default extendTheme(
+    {
+    colors,
     styles: {
         global: (props: any) => ({
             "body": {
