@@ -1,15 +1,37 @@
 import React from 'react';
 import {Alert, AlertIcon, Center} from "@chakra-ui/react";
 import {Bar, BarChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
-import {ChartData, DiagramType} from "../contexts/ChartContext";
+import {ChartData, DataOnDiagram, DataRow, DiagramType, TimePeriod} from "../contexts/ChartContext";
 
-const Chart = (props: {data: ChartData}) => {
-    const chartData = props.data;
+const Chart = (props: {chartData: ChartData}) => {
+    const chartProps = props.chartData;
+    let chartData: DataRow[];
 
-    if(chartData.diagramType == DiagramType.LINE_CHART) {
+    switch (chartProps.timePeriod) {
+        case TimePeriod.DAY:
+            if (chartProps.dataType == DataOnDiagram.SALES_VALUE)
+                chartData = chartProps.data.dayValue;
+            else
+                chartData = chartProps.data.dayUnits;
+            break;
+        case TimePeriod.MONTH:
+            if (chartProps.dataType == DataOnDiagram.SALES_VALUE)
+                chartData = chartProps.data.monthValue;
+            else
+                chartData = chartProps.data.monthUnits;
+            break;
+        case TimePeriod.YEAR:
+            if (chartProps.dataType == DataOnDiagram.SALES_VALUE)
+                chartData = chartProps.data.yearValue;
+            else
+                chartData = chartProps.data.yearUnits;
+            break;
+    }
+
+    if(chartProps.diagramType == DiagramType.LINE_CHART) {
         return (
             <Center pt={10}>
-                <LineChart width={600} height={400} data={chartData.data}>
+                <LineChart width={600} height={400} data={chartData}>
                     <CartesianGrid stroke={"#ccc"}/>
                     <XAxis dataKey="x"/>
                     <YAxis dataKey="y2"/>
@@ -20,10 +42,10 @@ const Chart = (props: {data: ChartData}) => {
                 </LineChart>
             </Center>
         );
-    } else if (chartData.diagramType == DiagramType.BAR_CHART) {
+    } else if (chartProps.diagramType == DiagramType.BAR_CHART) {
         return (
         <Center pt={10}>
-            <BarChart width={600} height={400} data={chartData.data}>
+            <BarChart width={600} height={400} data={chartData}>
                 <Tooltip/>
                 <CartesianGrid stroke={"#ccc"}/>
                 <XAxis dataKey="x"/>

@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
 import {HStack, Select, VStack} from "@chakra-ui/react";
-import {ChartContext, ChartData, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
+import {ChartContext, ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
 import OptionButton from "../atomics/OptionButton";
+import {AuthContext} from "../contexts/AuthContext";
+import serverAddress from "../contexts/ServerAddress";
 
 const data = [
     {x: 1,  y1: 100, y2: 50},
@@ -18,13 +20,25 @@ const data = [
 ]
 
 const ChartModule = () => {
-    const [chartData, updateChartData] = useState<ChartData>(new ChartData(data))
+    const [chartData, updateChartData] = useState<ChartData>(new ChartData({} as Data));
+    const authContext = useContext(AuthContext)
+    useEffect(() => {
+        const dataClone = chartData.clone();
+        const activeUser = authContext.authHolder.activeUser;
+        fetch(`${serverAddress}/chart-data/${activeUser}`)
+            .then(response => response.json())
+            .then(body => {
+                dataClone.data = body;
+                updateChartData(dataClone);
+            });
+    }, [authContext]
+    );
 
     const update = () => updateChartData(chartData.clone());
 
     return (
         <VStack>
-            <Chart data={chartData}/>
+            <Chart chartData={chartData}/>
             <HStack>
 
                 <OptionButton options={[

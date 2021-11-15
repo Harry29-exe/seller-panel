@@ -19,7 +19,18 @@ export enum DiagramType {
 }
 
 export interface Data {
+    yearValue: DataRow[],
+    monthValue: DataRow[],
+    dayValue: DataRow[],
+    yearUnits: DataRow[],
+    monthUnits: DataRow[],
+    dayUnits: DataRow[]
+}
 
+export interface DataRow {
+    x: number,
+    y1: number,
+    y2: number
 }
 
 export class ChartData {
@@ -27,7 +38,7 @@ export class ChartData {
     public dataType: DataOnDiagram = DataOnDiagram.SALES_VALUE;
     public isDataDuringUpdate: boolean = false;
     public timePeriod: TimePeriod = TimePeriod.DAY;
-    public data: any;
+    public data: Data;
 
     constructor(data: Data) {
         this.data = data;

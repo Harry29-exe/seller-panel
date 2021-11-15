@@ -3,11 +3,13 @@ import serverAddress from "./ServerAddress";
 
 export class AuthHolder {
     public users?: string[];
+    public activeUser?: string;
     public token?: string;
 
-    constructor(users?: string[], token?: string) {
+    constructor(users?: string[], activeUser?: string, token?: string) {
         this.users = users;
         this.token = token;
+        this.activeUser = activeUser;
     }
 
     public clone(): AuthHolder {
@@ -44,9 +46,13 @@ export class AuthContextHolder {
     }
 
     private parseResponse(response: any) {
-        this.authHolder.users = response.users;
-        this.authHolder.token = response.token;
-        this.updateFunction(this.authHolder.clone());
+        const authHolder = this.authHolder.clone();
+        authHolder.users = response.users;
+        authHolder.token = response.token;
+        if(authHolder.users !== undefined) {
+            authHolder.activeUser = authHolder.users[0];
+        }
+        this.updateFunction(authHolder);
     }
 
 }
