@@ -9,6 +9,7 @@ import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
 import { AuthContext } from "./contexts/AuthContext";
 import Chart from "./atomics/Chart";
+import ChartModule from "./molecules/ChartModule";
 
 export const App = () => (
     <ChakraProvider theme={theme}>
@@ -22,7 +23,7 @@ export const App = () => (
                 }/>
 
                 <Routes>
-                    <Route path={"/"} element={<Chart/>}/>
+                    <Route path={"/"} element={<ChartModule/>}/>
                     <Route path={"/buyers-opinions"} element={<TestComponent2/>}/>
                 </Routes>
             </BrowserRouter>

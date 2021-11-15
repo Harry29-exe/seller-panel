@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import Chart from "../atomics/Chart";
 import {HStack, Select, VStack} from "@chakra-ui/react";
-import {ChartContext, ChartData, DiagramType} from '../contexts/ChartContext';
+import {ChartContext, ChartData, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
+import OptionButton from "../atomics/OptionButton";
 
 const data = [
     {x: 1,  y1: 100, y2: 50},
@@ -19,20 +20,38 @@ const data = [
 const ChartModule = () => {
     const [chartData, updateChartData] = useState<ChartData>(new ChartData(data))
 
+    const update = () => updateChartData(chartData.clone());
+
     return (
-        <ChartContext.Provider value={{data: chartData, update: () => updateChartData(chartData.clone())}}>
-            <VStack>
-                <Chart/>
-                <HStack>
-                    <Select defaultValue={DiagramType.LINE_CHART} onChange={() => {
-                        
-                    }}>
-                        <option value={DiagramType.LINE_CHART}>Line chart</option>
-                        <option value={DiagramType.BAR_CHART}>Bar chart</option>
-                    </Select>
-                </HStack>
-            </VStack>
-        </ChartContext.Provider>
+        <VStack>
+            <Chart data={chartData}/>
+            <HStack>
+
+                <OptionButton options={[
+                    [DiagramType.BAR_CHART, "bar chart"],
+                    [DiagramType.LINE_CHART, "line chart"]
+                ]} onChange={(event: any) => {
+                    chartData.diagramType = Number.parseInt(event.target.value);
+                    update();
+                }} />
+                <OptionButton options={[
+                    [TimePeriod.YEAR, "Year"],
+                    [TimePeriod.MONTH, "Month"],
+                    [TimePeriod.DAY, "Day"]
+                ]} onChange={(event: any) => {
+                    chartData.timePeriod = Number.parseInt(event.target.value);
+                    update();
+                }} />
+                <OptionButton options={[
+                    [DataOnDiagram.SALES_VALUE, "Sales value"],
+                    [DataOnDiagram.SOLD_UNITS, "Units sold"]
+                ]} onChange={(event: any) => {
+                    chartData.dataType = Number.parseInt(event.target.value);
+                    update();
+                }} />
+
+            </HStack>
+        </VStack>
     );
 };
 

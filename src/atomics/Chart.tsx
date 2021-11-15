@@ -1,32 +1,15 @@
 import React from 'react';
-import {Center} from "@chakra-ui/react";
+import {Alert, AlertIcon, Center} from "@chakra-ui/react";
 import {Bar, BarChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
+import {ChartData, DiagramType} from "../contexts/ChartContext";
 
-enum DataTime {
-    NOW,
-    EARLIER
-}
+const Chart = (props: {data: ChartData}) => {
+    const chartData = props.data;
 
-const Chart = () => {
-    const data = [
-        {x: 1,  y1: 100, y2: 50},
-        {x: 2,  y1: 130, y2: 120},
-        {x: 3,  y1: 150, y2: 210},
-        {x: 4,  y1:  50, y2: 110},
-        {x: 5,  y1: 200, y2: 130},
-        {x: 6,  y1:  80, y2: 120},
-        {x: 7,  y1: 110, y2: 120},
-        {x: 8,  y1: 170, y2: 50},
-        {x: 9,  y1:  70, y2: 230},
-        {x: 10, y1: 170, y2: 180},
-    ]
-
-    let diagramType: string = "Line2";
-
-    if(diagramType === "Line") {
+    if(chartData.diagramType == DiagramType.LINE_CHART) {
         return (
             <Center pt={10}>
-                <LineChart width={600} height={400} data={data}>
+                <LineChart width={600} height={400} data={chartData.data}>
                     <CartesianGrid stroke={"#ccc"}/>
                     <XAxis dataKey="x"/>
                     <YAxis dataKey="y2"/>
@@ -37,21 +20,25 @@ const Chart = () => {
                 </LineChart>
             </Center>
         );
-    } else {
+    } else if (chartData.diagramType == DiagramType.BAR_CHART) {
         return (
         <Center pt={10}>
-            <BarChart width={600} height={400} data={data}>
+            <BarChart width={600} height={400} data={chartData.data}>
                 <Tooltip/>
                 <CartesianGrid stroke={"#ccc"}/>
                 <XAxis dataKey="x"/>
                 <YAxis dataKey="y2"/>
                 <Bar type="monotone" dataKey="y1" fill="#5c2"/>
                 <Bar type="monotone" dataKey="y2" fill="#5af"/>
-
-
             </BarChart>
         </Center>
         );
+    } else {
+        return (
+            <Alert status="error">
+                <AlertIcon/>
+            </Alert>
+        )
     }
 };
 

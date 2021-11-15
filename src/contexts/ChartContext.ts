@@ -27,7 +27,7 @@ export class ChartData {
     public dataType: DataOnDiagram = DataOnDiagram.SALES_VALUE;
     public isDataDuringUpdate: boolean = false;
     public timePeriod: TimePeriod = TimePeriod.DAY;
-    public data: Data;
+    public data: any;
 
     constructor(data: Data) {
         this.data = data;
