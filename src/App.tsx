@@ -9,6 +9,7 @@ import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
 import ChartModule from "./molecules/ChartModule";
 import {useContext, useState} from "react";
+import BuyersOpinions from "./views/BuyersOpinions";
 
 export const App = () => {
     let [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
@@ -25,7 +26,7 @@ export const App = () => {
 
                     <Routes>
                         <Route path={"/"} element={<ChartModule/>}/>
-                        <Route path={"/buyers-opinions"} element={<TestComponent2/>}/>
+                        <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
                     </Routes>
 
                 </BrowserRouter>
