@@ -18,9 +18,13 @@ const AccountButton = () => {
                                 borderRadius="100%" bg={"primary.400"}>
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>Account 1</MenuItem>
-                        <MenuItem>Account 2</MenuItem>
-                        <MenuItem>Account 3</MenuItem>
+                        {
+                            authContext.authHolder.users?.map(user =>
+                                <MenuItem ket={user} onClick={() => authContext.changeActiveUser(user)}>
+                                    {user}
+                                </MenuItem>
+                            )
+                        }
                         <MenuItem>Logout</MenuItem>
                     </MenuList>
                 </Menu>

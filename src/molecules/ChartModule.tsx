@@ -23,6 +23,7 @@ const ChartModule = () => {
     const [chartData, updateChartData] = useState<ChartData>(new ChartData({} as Data));
     const authContext = useContext(AuthContext)
     useEffect(() => {
+        // debugger;
         const dataClone = chartData.clone();
         const activeUser = authContext.authHolder.activeUser;
         fetch(`${serverAddress}/chart-data/${activeUser}`)

@@ -13,7 +13,7 @@ export class AuthHolder {
     }
 
     public clone(): AuthHolder {
-        return new AuthHolder(this.users, this.token);
+        return new AuthHolder(this.users, this.activeUser, this.token);
     }
 
 }
@@ -43,6 +43,16 @@ export class AuthContextHolder {
                     .then(response => this.parseResponse(response))
             }
         });
+    }
+
+    public changeActiveUser(user: string) {
+        const authHolder = this.authHolder;
+        if(authHolder.users !== undefined && authHolder.users.find((u) => u == user)) {
+            authHolder.activeUser = user;
+            this.updateFunction(authHolder.clone());
+        } else {
+            console.error("No such user: " + user);
+        }
     }
 
     private parseResponse(response: any) {
