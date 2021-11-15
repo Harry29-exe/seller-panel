@@ -3,7 +3,7 @@ import {Box, Center, Flex, HStack, Textarea, useColorModeValue, VStack} from "@c
 import Rating from "../atomics/Rating";
 
 const BuyerOpinion = () => {
-    const customerBg = useColorModeValue("gray.700", "gray.300")
+    const customerBg = useColorModeValue("gray.300", "gray.300")
     const bg = useColorModeValue("gray.100", "gray.900")
 
     return (
