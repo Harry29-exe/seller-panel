@@ -6,7 +6,7 @@ import LoginModal from "../molecules/LoginModal";
 const AccountButton = () => {
     const authContext = useContext(AuthContext);
 
-    if (authContext === null) {
+    if (!authContext.isLogged()) {
         return (
             <LoginModal/>
         )

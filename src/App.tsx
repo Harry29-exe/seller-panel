@@ -3,40 +3,32 @@ import {
     ChakraProvider,
 } from "@chakra-ui/react"
 import Navbar from "./molecules/Navbar";
-import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
-import TestComponent1 from "./molecules/TestComponent1";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
-import {AuthContext, AuthHolder} from "./contexts/AuthContext";
-import Chart from "./atomics/Chart";
+import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
 import ChartModule from "./molecules/ChartModule";
 import {useContext, useState} from "react";
 
 export const App = () => {
-    let [auth, updateAuth] = useState<AuthHolder>();
-    if(!!auth) {
-        let holder = new AuthHolder()
-        updateAuth()
-    }
-
+    let [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
 
     return (
         <ChakraProvider theme={theme}>
-            <AuthContext.Provider value={auth}>
+            <AuthContext.Provider value={new AuthContextHolder(auth, (auth) => updateAuth(auth))}>
                 <BrowserRouter>
 
                     <Navbar routes={[
                         {name: "Home", path: "/"},
                         {name: "Buyers opinions", path: "/buyers-opinions"}
-                    ]
-                    }/>
+                    ]}/>
 
                     <Routes>
                         <Route path={"/"} element={<ChartModule/>}/>
                         <Route path={"/buyers-opinions"} element={<TestComponent2/>}/>
                     </Routes>
-                </BrowserRouter>
 
+                </BrowserRouter>
             </AuthContext.Provider>
         </ChakraProvider>
     )

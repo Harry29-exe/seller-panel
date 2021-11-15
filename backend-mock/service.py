@@ -1,12 +1,13 @@
 from flask import Flask, request
-
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/login")
 def login():
     return {
-        "users": ["Alex", "Bob", "Frank"]
+        "users": ["Alex", "Bob", "Frank"],
+        "token": "secret-token"
     }
 
 
@@ -19,3 +20,5 @@ def chart_data(user):
         }
     elif user == "Bob":
         return {}
+
+app.run()

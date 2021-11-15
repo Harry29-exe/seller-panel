@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {
     Box,
     Button, Center, CloseButton, Input,
@@ -11,9 +11,18 @@ import {
     useDisclosure,
     VStack
 } from "@chakra-ui/react";
+import {AuthContext} from "../contexts/AuthContext";
+
+class LoginData {
+    public username: string = "";
+    public password: string = "";
+}
 
 const LoginModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const loginData = useRef<LoginData>(new LoginData())
+    const authContext = useContext(AuthContext);
+
     return (
         <>
             <Button onClick={onOpen}>Login</Button>
@@ -28,12 +37,17 @@ const LoginModal = () => {
                     </ModalHeader>
                     <ModalBody>
                         <VStack>
-                            <Input placeholder="Login"/>
-                            <Input placeholder="Password" type="password"/>
+                            <Input placeholder="Login" onChange={(event: any) =>
+                                loginData.current.username = event.target.value}/>
+                            <Input placeholder="Password" type="password" onChange={(event: any) =>
+                                loginData.current.password = event.target.value}/>
                         </VStack>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="green">Login</Button>
+                        <Button colorScheme="green" onClick={() =>
+                            authContext.login(loginData.current.username,loginData.current.password)}>
+                            Login
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
