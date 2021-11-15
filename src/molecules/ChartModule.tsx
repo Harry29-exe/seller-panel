@@ -43,16 +43,16 @@ const ChartModule = () => {
             <HStack>
 
                 <OptionButton options={[
-                    [DiagramType.BAR_CHART, "bar chart"],
-                    [DiagramType.LINE_CHART, "line chart"]
+                    [DiagramType.LINE_CHART, "line chart"],
+                    [DiagramType.BAR_CHART, "bar chart"]
                 ]} onChange={(event: any) => {
                     chartData.diagramType = Number.parseInt(event.target.value);
                     update();
                 }} />
                 <OptionButton options={[
+                    [TimePeriod.DAY, "Day"],
                     [TimePeriod.YEAR, "Year"],
-                    [TimePeriod.MONTH, "Month"],
-                    [TimePeriod.DAY, "Day"]
+                    [TimePeriod.MONTH, "Month"]
                 ]} onChange={(event: any) => {
                     chartData.timePeriod = Number.parseInt(event.target.value);
                     update();
