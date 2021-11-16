@@ -5,20 +5,37 @@ import {ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contex
 import OptionButton from "../atomics/OptionButton";
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../contexts/ServerAddress";
+import {defineMessages, useIntl} from "react-intl";
+
+function addId(v: string): string {
+    return "ChartModule_" + v;
+}
+
+const messages = defineMessages({
+    lineChar: {
+        id: addId("lineChart"),
+        defaultMessage: "Line chart"
+    },
+    barChart: {
+        id: addId("barChart"),
+        defaultMessage: "Bar chart"
+    }
+})
 
 const ChartModule = () => {
     const [chartData, updateChartData] = useState<ChartData>(new ChartData({} as Data));
     const authContext = useContext(AuthContext)
+    const intl = useIntl();
+
     useEffect(() => {
-            // debugger;
-            const dataClone = chartData.clone();
-            const activeUser = authContext.authHolder.activeUser;
-            fetch(`${backendAddress}/chart-data/${activeUser}`)
-                .then(response => response.json())
-                .then(body => {
-                    dataClone.data = body;
-                    updateChartData(dataClone);
-                });
+        const dataClone = chartData.clone();
+        const activeUser = authContext.authHolder.activeUser;
+        fetch(`${backendAddress}/chart-data/${activeUser}`)
+            .then(response => response.json())
+            .then(body => {
+                dataClone.data = body;
+                updateChartData(dataClone);
+            });
         }, [authContext]
     );
 
@@ -33,8 +50,8 @@ const ChartModule = () => {
             <HStack justifyContent="space-evenly" w="100%">
 
                 <OptionButton options={[
-                    [DiagramType.LINE_CHART, "line chart"],
-                    [DiagramType.BAR_CHART, "bar chart"]
+                    [DiagramType.LINE_CHART, intl.formatMessage(messages.lineChar)],
+                    [DiagramType.BAR_CHART, intl.formatMessage(messages.barChart)]
                 ]} onChange={(event: any) => {
                     chartData.diagramType = Number.parseInt(event.target.value);
                     update();
