@@ -1,22 +1,16 @@
 import * as React from "react"
-import {
-    ChakraProvider,
-} from "@chakra-ui/react"
+import {useEffect, useState} from "react"
+import {ChakraProvider,} from "@chakra-ui/react"
 import Navbar from "./molecules/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
-import ChartModule from "./molecules/ChartModule";
-import {useContext, useEffect, useState} from "react";
 import BuyersOpinions from "./views/BuyersOpinions";
 import {IntlProvider} from "react-intl";
-import backendAddress, {frontendAddress} from "./contexts/ServerAddress";
+import {frontendAddress} from "./contexts/ServerAddress";
 import SalesChart from "./views/SalesChart";
 
-export const I18nMessages = {
-
-}
+export const I18nMessages = {}
 
 const plMessages = {
     SalesChart_GREETINGS: {
@@ -33,7 +27,7 @@ export const App = () => {
         () => {
             fetch(`${frontendAddress}/lang/${lang}.json`)
                 .then(response => response.json())
-                    .then(json => setMessages(json)
+                .then(json => setMessages(json)
                 );
         }, [lang]
     );
@@ -41,29 +35,27 @@ export const App = () => {
 
     return (
         <ChakraProvider theme={theme}>
-        <IntlProvider defaultLocale="en" locale={lang} messages={langMessages}>
-        <AuthContext.Provider value={new AuthContextHolder(auth,
-            (auth) => updateAuth(auth))}>
-            <BrowserRouter>
+            <IntlProvider defaultLocale="en" locale={lang} messages={langMessages}>
+                <AuthContext.Provider value={new AuthContextHolder(auth,
+                    (auth) => updateAuth(auth))}>
+                    <BrowserRouter>
 
-                <Navbar routes={[
-                    {name: "Home", path: "/"},
-                    {name: "Buyers opinions", path: "/buyers-opinions"}
-                ]}/>
+                        <Navbar routes={[
+                            {name: "Home", path: "/"},
+                            {name: "Buyers opinions", path: "/buyers-opinions"}
+                        ]}/>
 
-                <Routes>
-                    <Route path={"/"} element={<SalesChart/>}/>
-                    <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
-                </Routes>
+                        <Routes>
+                            <Route path={"/"} element={<SalesChart/>}/>
+                            <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
+                        </Routes>
 
-            </BrowserRouter>
-        </AuthContext.Provider>
+                    </BrowserRouter>
+                </AuthContext.Provider>
             </IntlProvider>
         </ChakraProvider>
     )
 }
-
-
 
 
 // {/*<Box textAlign="center" fontSize="xl">*/}

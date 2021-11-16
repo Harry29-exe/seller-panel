@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Center, Flex, HStack, Textarea, useColorModeValue, VStack} from "@chakra-ui/react";
+import {Box, HStack, Textarea, useColorModeValue, VStack} from "@chakra-ui/react";
 import Rating from "../atomics/Rating";
 
 const BuyerOpinion = () => {

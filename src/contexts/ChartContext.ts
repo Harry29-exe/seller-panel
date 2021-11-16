@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ChartContext = React.createContext<{data: ChartData, update: () => void} | null>(null);
+export const ChartContext = React.createContext<{ data: ChartData, update: () => void } | null>(null);
 
 export enum TimePeriod {
     DAY,

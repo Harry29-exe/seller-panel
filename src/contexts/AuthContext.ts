@@ -38,7 +38,7 @@ export class AuthContextHolder {
                 password: password
             }
         }).then(response => {
-            if(response.status == 200) {
+            if (response.status == 200) {
                 response.json()
                     .then(response => this.parseResponse(response))
             }
@@ -47,7 +47,7 @@ export class AuthContextHolder {
 
     public changeActiveUser(user: string) {
         const authHolder = this.authHolder;
-        if(authHolder.users !== undefined && authHolder.users.find((u) => u == user)) {
+        if (authHolder.users !== undefined && authHolder.users.find((u) => u == user)) {
             authHolder.activeUser = user;
             this.updateFunction(authHolder.clone());
         } else {
@@ -59,7 +59,7 @@ export class AuthContextHolder {
         const authHolder = this.authHolder.clone();
         authHolder.users = response.users;
         authHolder.token = response.token;
-        if(authHolder.users !== undefined) {
+        if (authHolder.users !== undefined) {
             authHolder.activeUser = authHolder.users[0];
         }
         this.updateFunction(authHolder);

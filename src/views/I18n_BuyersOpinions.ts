@@ -1,7 +1,3 @@
-export const engMessage = {
+export const engMessage = {}
 
-}
-
-export const plMessages = {
-
-}
+export const plMessages = {}

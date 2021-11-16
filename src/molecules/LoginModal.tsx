@@ -1,7 +1,10 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useRef} from 'react';
 import {
     Box,
-    Button, Center, CloseButton, Input,
+    Button,
+    Center,
+    CloseButton,
+    Input,
     Modal,
     ModalBody,
     ModalContent,
@@ -19,7 +22,7 @@ class LoginData {
 }
 
 const LoginModal = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {isOpen, onOpen, onClose} = useDisclosure();
     const loginData = useRef<LoginData>(new LoginData())
     const authContext = useContext(AuthContext);
 
@@ -45,7 +48,7 @@ const LoginModal = () => {
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme="green" onClick={() =>
-                            authContext.login(loginData.current.username,loginData.current.password)}>
+                            authContext.login(loginData.current.username, loginData.current.password)}>
                             Login
                         </Button>
                     </ModalFooter>

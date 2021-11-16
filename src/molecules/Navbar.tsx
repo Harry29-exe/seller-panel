@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    AccordionButton,
     Box,
-    Button, Center,
+    Button,
+    Center,
     Drawer,
     DrawerContent,
     DrawerOverlay,
@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import NavbarLink, {NavbarLinkProps} from "../atomics/NavbarLink";
-import {useLocation, useMatch, useResolvedPath} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import AccountButton from "../atomics/AccountButton";
 
 export interface MenuProps {
@@ -32,7 +32,7 @@ const Navbar = (props: MenuProps) => {
                 bg={bgColor}
                 shadow={`0px 2px 8px 0px ${shadowColor}`}
                 fontSize={"3xl"} fontWeight={"bold"}>
-            {navbarType === "phone"?
+            {navbarType === "phone" ?
                 <>
                     <MobileNavbar routes={props.routes}/>
                     <Box flexGrow={4}/>
@@ -41,7 +41,7 @@ const Navbar = (props: MenuProps) => {
                 <HStack flexGrow={4} spacing={[10, null, 10]}>
                     {
                         props.routes.map(route =>
-                            <Center>
+                            <Center key={route.name}>
                                 <NavbarLink name={route.name} path={route.path} isActive={route.path === pathname}/>
                             </Center>
                         )
@@ -50,7 +50,7 @@ const Navbar = (props: MenuProps) => {
             }
 
             <HStack flexGrow={0}>
-                <ColorModeSwitcher justifySelf="flex-end" />*
+                <ColorModeSwitcher justifySelf="flex-end"/>*
                 <AccountButton/>
             </HStack>
         </HStack>
@@ -58,7 +58,7 @@ const Navbar = (props: MenuProps) => {
 };
 
 const MobileNavbar = (props: MenuProps) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {isOpen, onOpen, onClose} = useDisclosure();
     const {pathname} = useLocation();
 
     return (

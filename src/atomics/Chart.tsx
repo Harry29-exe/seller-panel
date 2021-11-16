@@ -3,7 +3,7 @@ import {Alert, AlertIcon, Center} from "@chakra-ui/react";
 import {Bar, BarChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import {ChartData, DataOnDiagram, DataRow, DiagramType, TimePeriod} from "../contexts/ChartContext";
 
-const Chart = (props: {chartData: ChartData}) => {
+const Chart = (props: { chartData: ChartData }) => {
     const chartProps = props.chartData;
     let chartData: DataRow[];
 
@@ -28,7 +28,7 @@ const Chart = (props: {chartData: ChartData}) => {
             break;
     }
 
-    if(chartProps.diagramType == DiagramType.LINE_CHART) {
+    if (chartProps.diagramType == DiagramType.LINE_CHART) {
         return (
             <Center pt={10}>
                 <LineChart width={600} height={400} data={chartData}>
@@ -44,16 +44,16 @@ const Chart = (props: {chartData: ChartData}) => {
         );
     } else if (chartProps.diagramType == DiagramType.BAR_CHART) {
         return (
-        <Center pt={10}>
-            <BarChart width={600} height={400} data={chartData}>
-                <Tooltip/>
-                <CartesianGrid stroke={"#ccc"}/>
-                <XAxis dataKey="x"/>
-                <YAxis dataKey="y2"/>
-                <Bar type="monotone" dataKey="y1" fill="#5c2"/>
-                <Bar type="monotone" dataKey="y2" fill="#5af"/>
-            </BarChart>
-        </Center>
+            <Center pt={10}>
+                <BarChart width={600} height={400} data={chartData}>
+                    <Tooltip/>
+                    <CartesianGrid stroke={"#ccc"}/>
+                    <XAxis dataKey="x"/>
+                    <YAxis dataKey="y2"/>
+                    <Bar type="monotone" dataKey="y1" fill="#5c2"/>
+                    <Bar type="monotone" dataKey="y2" fill="#5af"/>
+                </BarChart>
+            </Center>
         );
     } else {
         return (

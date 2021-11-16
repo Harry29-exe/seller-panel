@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Center, VStack} from "@chakra-ui/react";
+import {Box, VStack} from "@chakra-ui/react";
 import {FormattedMessage} from "react-intl";
 import ChartModule from "../molecules/ChartModule";
 

@@ -9,16 +9,16 @@ export interface NavbarLinkProps {
     isActive?: boolean
 }
 
-const  NavbarLink = (props: NavbarLinkProps) => {
+const NavbarLink = (props: NavbarLinkProps) => {
     let mode = useColorModeValue("l", "d")
 
     return (
         <Link to={`${props.path}`} style={{width: "100%"}}>
             <Center py={4}>
-                <LinkBox color={props.isActive?
-                        mode === "d"?"primary.400": "primary.400":
-                        mode === "d"? "white": "black"
-                        }
+                <LinkBox color={props.isActive ?
+                    mode === "d" ? "primary.400" : "primary.400" :
+                    mode === "d" ? "white" : "black"
+                }
                 >
                     {props.name}
                 </LinkBox>
