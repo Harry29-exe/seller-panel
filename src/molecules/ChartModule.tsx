@@ -14,11 +14,11 @@ function addId(v: string): string {
 
 const messages = defineMessages({
     lineChar: {
-        id: addId("lineChart"),
+        id: `ChartModule_lineChart`,
         defaultMessage: "Line chart"
     },
     barChart: {
-        id: addId("barChart"),
+        id: "ChartModule_barChart",
         defaultMessage: "Bar chart"
     }
 })
@@ -47,7 +47,7 @@ const ChartModule = () => {
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
                     <FormattedMessage
-                        id={addId("GREETINGS")}
+                        id={"ChartModule_GREETINGS"}
                         defaultMessage="Sales chart"
                         description="chart view greeting"
                     />

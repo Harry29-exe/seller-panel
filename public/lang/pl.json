@@ -1,8 +1,20 @@
 {
-  "SalesChart_GREETINGS": [
+  "ChartModule_GREETINGS": [
     {
       "type": 0,
-      "value": "Wykres sprzedawcy"
+      "value": "Wykres sprzedarzy"
+    }
+  ],
+  "ChartModule_barChart": [
+    {
+      "type": 0,
+      "value": "Diagram słubkowy"
+    }
+  ],
+  "ChartModule_lineChart": [
+    {
+      "type": 0,
+      "value": "Diagram liniowy"
     }
   ]
 }

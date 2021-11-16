@@ -1,12 +1,12 @@
 {
   "ChartModule_GREETINGS": {
-    "defaultMessage": "Wykres sprzedarzy",
+    "defaultMessage": "Sales chart",
     "description": "chart view greeting"
   },
   "ChartModule_barChart": {
-    "defaultMessage": "Diagram słubkowy"
+    "defaultMessage": "Bar chart"
   },
   "ChartModule_lineChart": {
-    "defaultMessage": "Diagram liniowy"
+    "defaultMessage": "Line chart"
   }
 }
