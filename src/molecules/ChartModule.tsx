@@ -4,7 +4,7 @@ import {HStack, Select, VStack} from "@chakra-ui/react";
 import {ChartContext, ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
 import OptionButton from "../atomics/OptionButton";
 import {AuthContext} from "../contexts/AuthContext";
-import serverAddress from "../contexts/ServerAddress";
+import backendAddress from "../contexts/ServerAddress";
 
 const data = [
     {x: 1,  y1: 100, y2: 50},
@@ -26,7 +26,7 @@ const ChartModule = () => {
         // debugger;
         const dataClone = chartData.clone();
         const activeUser = authContext.authHolder.activeUser;
-        fetch(`${serverAddress}/chart-data/${activeUser}`)
+        fetch(`${backendAddress}/chart-data/${activeUser}`)
             .then(response => response.json())
             .then(body => {
                 dataClone.data = body;

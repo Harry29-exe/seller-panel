@@ -1,5 +1,5 @@
 import React from "react";
-import serverAddress from "./ServerAddress";
+import backendAddress from "./ServerAddress";
 
 export class AuthHolder {
     public users?: string[];
@@ -32,7 +32,7 @@ export class AuthContextHolder {
     }
 
     public login(username: string, password: string) {
-        fetch(`${serverAddress}/login`, {
+        fetch(`${backendAddress}/login`, {
             headers: {
                 username: username,
                 password: password

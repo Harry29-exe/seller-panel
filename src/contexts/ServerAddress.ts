@@ -1,3 +1,4 @@
-const serverAddress = "http://localhost:5000"
+const backendAddress = "http://localhost:5000";
+export const frontendAddress = "http://localhost:3000";
 
-export default serverAddress;
+export default backendAddress;

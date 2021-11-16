@@ -8,29 +8,49 @@ import TestComponent2 from "./molecules/TestComponent2";
 import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
 import ChartModule from "./molecules/ChartModule";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import BuyersOpinions from "./views/BuyersOpinions";
+import {IntlProvider} from "react-intl";
+import backendAddress, {frontendAddress} from "./contexts/ServerAddress";
+import SalesChart from "./views/SalesChart";
+
+export const I18nMessages = {
+
+}
 
 export const App = () => {
-    let [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
+    const [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
+    const [lang, setLang] = useState<string>("pl");
+    const [messages, setMessages] = useState();
+    useEffect(
+        () => {
+            fetch(`${frontendAddress}/lang/${lang}.json`)
+                .then(response => response.json())
+                    .then(json => setMessages(json)
+                );
+        }, [lang]
+    );
+    console.log(messages);
 
     return (
         <ChakraProvider theme={theme}>
-            <AuthContext.Provider value={new AuthContextHolder(auth, (auth) => updateAuth(auth))}>
-                <BrowserRouter>
+        <IntlProvider defaultLocale="en" locale={lang} messages={messages}>
+        <AuthContext.Provider value={new AuthContextHolder(auth, (auth) => updateAuth(auth))}>
+            <BrowserRouter>
 
-                    <Navbar routes={[
-                        {name: "Home", path: "/"},
-                        {name: "Buyers opinions", path: "/buyers-opinions"}
-                    ]}/>
+                <Navbar routes={[
+                    {name: "Home", path: "/"},
+                    {name: "Buyers opinions", path: "/buyers-opinions"}
+                ]}/>
 
-                    <Routes>
-                        <Route path={"/"} element={<ChartModule/>}/>
-                        <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
-                    </Routes>
+                <Routes>
+                    <Route path={"/"} element={<SalesChart/>}/>
+                    <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
+                </Routes>
 
-                </BrowserRouter>
-            </AuthContext.Provider>
+            </BrowserRouter>
+        </AuthContext.Provider>
+            </IntlProvider>
         </ChakraProvider>
     )
 }
