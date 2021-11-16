@@ -40,10 +40,11 @@ export const App = () => {
                     (auth) => updateAuth(auth))}>
                     <BrowserRouter>
 
+
                         <Navbar routes={[
                             {name: "Home", path: "/"},
                             {name: "Buyers opinions", path: "/buyers-opinions"}
-                        ]}/>
+                        ]} updateLanguage={(lang) => setLang(lang)}/>
 
                         <Routes>
                             <Route path={"/"} element={<SalesChart/>}/>

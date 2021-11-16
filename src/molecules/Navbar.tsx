@@ -1,24 +1,27 @@
 import React from 'react';
 import {
     Box,
-    Button,
     Center,
     Drawer,
     DrawerContent,
     DrawerOverlay,
     HStack,
+    IconButton,
     useBreakpointValue,
     useColorModeValue,
     useDisclosure,
     VStack
 } from "@chakra-ui/react";
+import {HamburgerIcon} from "@chakra-ui/icons";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import NavbarLink, {NavbarLinkProps} from "../atomics/NavbarLink";
 import {useLocation} from "react-router-dom";
 import AccountButton from "../atomics/AccountButton";
+import OptionButton from "../atomics/OptionButton";
 
 export interface MenuProps {
-    routes: NavbarLinkProps[]
+    routes: NavbarLinkProps[],
+    updateLanguage: (lang: string) => any
 }
 
 const Navbar = (props: MenuProps) => {
@@ -50,20 +53,24 @@ const Navbar = (props: MenuProps) => {
             }
 
             <HStack flexGrow={0}>
-                <ColorModeSwitcher justifySelf="flex-end"/>*
+                <ColorModeSwitcher justifySelf="flex-end"/>
+                <Box fontSize={"md"}>
+                    <OptionButton options={[["pl", "Polski"], ["en", "English"]]}
+                                  onChange={(event) => props.updateLanguage(event.target.value)}/>
+                </Box>
                 <AccountButton/>
             </HStack>
         </HStack>
     );
 };
 
-const MobileNavbar = (props: MenuProps) => {
+const MobileNavbar = (props: { routes: NavbarLinkProps[] }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const {pathname} = useLocation();
 
     return (
         <>
-            <Button onClick={onOpen}>Open navbar</Button>
+            <IconButton aria-label="Menu" icon={<HamburgerIcon/>} onClick={onOpen}>Open navbar</IconButton>
             <Drawer isOpen={isOpen} onClose={onClose}
                     placement="right" size="full">
                 <DrawerOverlay/>
