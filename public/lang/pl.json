@@ -1,6 +1,8 @@
 {
-  "SalesChart.GREETINGS": {
-    "message": "Wykres sprzedarzy",
-    "description": "chart view greeting"
-  }
+  "SalesChart_GREETINGS": [
+    {
+      "type": 0,
+      "value": "Wykres sprzedawcy"
+    }
+  ]
 }

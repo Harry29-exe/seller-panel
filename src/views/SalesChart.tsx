@@ -8,7 +8,7 @@ const SalesChart = () => {
         <VStack>
             <Box>
                 <FormattedMessage
-                    id="SalesChart.GREETINGS"
+                    id="SalesChart_GREETINGS"
                     defaultMessage="Sales chart"
                     description="chart view greeting"
                 />

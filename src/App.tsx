@@ -18,10 +18,17 @@ export const I18nMessages = {
 
 }
 
+const plMessages = {
+    SalesChart_GREETINGS: {
+        message: "Wykres sprzedarzy",
+        description: "chart view greeting"
+    }
+}
+
 export const App = () => {
     const [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
     const [lang, setLang] = useState<string>("pl");
-    const [messages, setMessages] = useState();
+    const [langMessages, setMessages] = useState(undefined);
     useEffect(
         () => {
             fetch(`${frontendAddress}/lang/${lang}.json`)
@@ -30,12 +37,13 @@ export const App = () => {
                 );
         }, [lang]
     );
-    console.log(messages);
+    console.log(langMessages);
 
     return (
         <ChakraProvider theme={theme}>
-        <IntlProvider defaultLocale="en" locale={lang} messages={messages}>
-        <AuthContext.Provider value={new AuthContextHolder(auth, (auth) => updateAuth(auth))}>
+        <IntlProvider defaultLocale="en" locale={lang} messages={langMessages}>
+        <AuthContext.Provider value={new AuthContextHolder(auth,
+            (auth) => updateAuth(auth))}>
             <BrowserRouter>
 
                 <Navbar routes={[
