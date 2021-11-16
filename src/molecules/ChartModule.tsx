@@ -1,11 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
-import {Box, HStack, VStack} from "@chakra-ui/react";
+import {Center, HStack, VStack} from "@chakra-ui/react";
 import {ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
 import OptionButton from "../atomics/OptionButton";
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../contexts/ServerAddress";
-import {defineMessages, useIntl} from "react-intl";
+import {defineMessages, FormattedMessage, useIntl} from "react-intl";
+import ComponentBg from '../atomics/ComponentBG';
 
 function addId(v: string): string {
     return "ChartModule_" + v;
@@ -45,8 +46,8 @@ const ChartModule = () => {
         <ComponentBg px={4} py={5}>
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
-                    <Message
-                        id={getId("GREETINGS")}
+                    <FormattedMessage
+                        id={addId("GREETINGS")}
                         defaultMessage="Sales chart"
                         description="chart view greeting"
                     />
