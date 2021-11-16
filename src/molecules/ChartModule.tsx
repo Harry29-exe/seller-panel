@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
-import {HStack, VStack} from "@chakra-ui/react";
+import {Box, HStack, VStack} from "@chakra-ui/react";
 import {ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
 import OptionButton from "../atomics/OptionButton";
 import {AuthContext} from "../contexts/AuthContext";
@@ -26,8 +26,11 @@ const ChartModule = () => {
 
     return (
         <VStack>
-            <Chart chartData={chartData}/>
-            <HStack>
+            <Box border={"2px solid"} borderColor="primary.400" borderRadius="lg">
+                <Chart chartData={chartData}/>
+            </Box>
+
+            <HStack justifyContent="space-evenly" w="100%">
 
                 <OptionButton options={[
                     [DiagramType.LINE_CHART, "line chart"],

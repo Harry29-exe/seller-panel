@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {Link as LinkBox} from "@chakra-ui/layout";
 import React from "react";
-import {Center, useColorModeValue} from "@chakra-ui/react";
+import {Box, Center, useColorModeValue} from "@chakra-ui/react";
 
 export interface NavbarLinkProps {
     name: string,
@@ -15,7 +15,7 @@ const NavbarLink = (props: NavbarLinkProps) => {
     return (
         <Link to={`${props.path}`} style={{width: "100%"}}>
             <Center py={4}>
-                <LinkBox color={props.isActive ?
+                <LinkBox as={Box} color={props.isActive ?
                     mode === "d" ? "primary.400" : "primary.400" :
                     mode === "d" ? "white" : "black"
                 }
