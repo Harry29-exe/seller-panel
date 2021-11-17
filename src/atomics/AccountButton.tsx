@@ -20,7 +20,7 @@ const AccountButton = () => {
                     <MenuList>
                         {
                             authContext.authHolder.users?.map(user =>
-                                <MenuItem ket={user} onClick={() => authContext.changeActiveUser(user)}>
+                                <MenuItem key={user} onClick={() => authContext.changeActiveUser(user)}>
                                     {user}
                                 </MenuItem>
                             )

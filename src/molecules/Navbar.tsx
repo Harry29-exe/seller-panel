@@ -27,7 +27,7 @@ export interface MenuProps {
 const Navbar = (props: MenuProps) => {
     let bgColor = useColorModeValue("gray.100", "gray.800");
     let shadowColor = useColorModeValue("#aaa", "#000")
-    let navbarType = useBreakpointValue(["phone", null, null, "normal"]);
+    let navbarType = useBreakpointValue(["phone", "mobile", null, "normal"]);
     const {pathname} = useLocation();
 
     return (
@@ -35,9 +35,9 @@ const Navbar = (props: MenuProps) => {
                 bg={bgColor}
                 shadow={`0px 2px 8px 0px ${shadowColor}`}
                 fontSize={"3xl"} fontWeight={"bold"}>
-            {navbarType === "phone" ?
+            {navbarType === "phone" || navbarType === "mobile" ?
                 <>
-                    <MobileNavbar routes={props.routes}/>
+                    <MobileNavbar routes={props.routes} size={navbarType === "phone" ? "full" : "sm"}/>
                     <Box flexGrow={4}/>
                 </>
                 :
@@ -64,7 +64,7 @@ const Navbar = (props: MenuProps) => {
     );
 };
 
-const MobileNavbar = (props: { routes: NavbarLinkProps[] }) => {
+const MobileNavbar = (props: { routes: NavbarLinkProps[], size: "full" | string }) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const {pathname} = useLocation();
 
@@ -72,7 +72,7 @@ const MobileNavbar = (props: { routes: NavbarLinkProps[] }) => {
         <>
             <IconButton aria-label="Menu" icon={<HamburgerIcon/>} onClick={onOpen}>Open navbar</IconButton>
             <Drawer isOpen={isOpen} onClose={onClose}
-                    placement="right" size="full">
+                    placement="left" size={props.size}>
                 <DrawerOverlay/>
                 <DrawerContent>
                     <VStack onClick={onClose} fontSize="4xl" fontWeight="bold" spacing={0} py={5}>
