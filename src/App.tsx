@@ -7,7 +7,7 @@ import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
 import BuyersOpinions from "./views/BuyersOpinions";
 import {IntlProvider} from "react-intl";
-import {frontendAddress} from "./contexts/ServerAddress";
+import {frontendAddress} from "./logic/ServerAddress";
 import SalesChart from "./views/SalesChart";
 
 export const I18nMessages = {}

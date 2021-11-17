@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
 import {Center, VStack} from "@chakra-ui/react";
 import {AuthContext} from "../contexts/AuthContext";
-import backendAddress from "../contexts/ServerAddress";
+import backendAddress from "../logic/ServerAddress";
 import {defineMessages, FormattedMessage} from "react-intl";
 import ComponentBg from '../atomics/ComponentBG';
 import ChartOptionPanel from "./ChartOptionPanel";
@@ -63,6 +63,7 @@ const ChartModule = () => {
 
     return (
         <ComponentBg px={4} py={5}>
+
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
                     <FormattedMessage

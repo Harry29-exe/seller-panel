@@ -1,5 +1,5 @@
 import React from "react";
-import backendAddress from "./ServerAddress";
+import backendAddress from "../logic/ServerAddress";
 
 export class AuthHolder {
     public users?: string[];

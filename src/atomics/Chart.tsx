@@ -1,24 +1,28 @@
 import React from 'react';
-import {Alert, AlertIcon} from "@chakra-ui/react";
+import {Alert, AlertIcon, useBreakpointValue} from "@chakra-ui/react";
 import {Bar, BarChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import {DataOnDiagram, DiagramType, TimePeriod} from "../logic/ChartInfo";
 import {ChartDataInfo, DataRow} from "../logic/ChartData";
 
-const margins = {
-    top: 5,
-    right: 20,
-    bottom: 5,
-    left: -10
-}
 
 const Chart = (props: { chartData: ChartDataInfo }) => {
     const chartProps = props.chartData;
+    const width = useBreakpointValue([280, 440, 700, 900])
+    const height = useBreakpointValue([350, 400, 500, 550])
+    // const xMargins = useBreakpointValue()
+    const margins = {
+        top: 5,
+        right: 20,
+        bottom: 5,
+        left: -10
+    }
+
     let chartData: DataRow[] = getChartData(chartProps);
 
     if (chartProps.info.diagramType === DiagramType.LINE_CHART) {
         return (
             <>
-                <LineChart width={700} height={400}
+                <LineChart width={width} height={height}
                            data={chartData} margin={margins}>
                     <CartesianGrid stroke={"rgba(204,204,204,0.4)"}/>
                     <XAxis dataKey="x"/>
@@ -37,7 +41,7 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
     } else if (chartProps.info.diagramType === DiagramType.BAR_CHART) {
         return (
             <>
-                <BarChart width={700} height={400}
+                <BarChart width={width} height={height}
                           data={chartData} margin={margins}>
                     <Tooltip/>
                     <CartesianGrid stroke={"#ccc"}/>
