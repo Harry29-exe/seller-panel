@@ -25,7 +25,7 @@ export interface BuyerOpinionProps {
     comment?: string
 }
 
-const BuyerOpinion = (props: BuyerOpinionProps) => {
+const BuyerReview = (props: BuyerOpinionProps) => {
     const bg = useColorModeValue("gray.100", "gray.900");
     const shadowColor = useShadowColor();
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -83,4 +83,4 @@ const OpinionHeader = (props: { name?: string, rating: number }) => {
     )
 }
 
-export default BuyerOpinion;
+export default BuyerReview;

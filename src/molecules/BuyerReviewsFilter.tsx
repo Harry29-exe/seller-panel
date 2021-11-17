@@ -29,7 +29,7 @@ export const opinionsTypes = {
     last5: "LAST5"
 }
 
-const BuyerOpinionsFilter = (props: { setOpinionsType: (v: string) => any }) => {
+const BuyerReviewsFilter = (props: { setOpinionsType: (v: string) => any }) => {
     const intl = useIntl();
 
     return (
@@ -53,4 +53,4 @@ const BuyerOpinionsFilter = (props: { setOpinionsType: (v: string) => any }) => 
     );
 };
 
-export default BuyerOpinionsFilter;
+export default BuyerReviewsFilter;

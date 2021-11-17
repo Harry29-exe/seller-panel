@@ -5,7 +5,7 @@ import Navbar from "./molecules/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
-import BuyersOpinions from "./views/BuyersOpinions";
+import BuyersReviews from "./views/BuyersReviews";
 import {defineMessages, IntlProvider, useIntl} from "react-intl";
 import {frontendAddress} from "./logic/ServerAddress";
 import SalesChart from "./views/SalesChart";
@@ -45,7 +45,7 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                  overflow="auto">
                 <Routes>
                     <Route path={"/"} element={<SalesChart/>}/>
-                    <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
+                    <Route path={"/buyers-opinions"} element={<BuyersReviews/>}/>
                     <Route path={"/orders"} element={<Orders/>}/>
                 </Routes>
             </Box>

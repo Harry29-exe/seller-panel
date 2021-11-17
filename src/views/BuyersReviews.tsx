@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import BuyerOpinion from "../molecules/BuyerOpinion";
-import {Box, Divider, useColorModeValue, VStack} from "@chakra-ui/react";
-import BuyerOpinionsFilter, {opinionsTypes} from "../molecules/BuyerOpinionsFilter";
+import BuyerReview from "../molecules/BuyerReview";
+import {Box, Center, Divider, useColorModeValue, VStack} from "@chakra-ui/react";
+import BuyerReviewsFilter, {opinionsTypes} from "../molecules/BuyerReviewsFilter";
 import ComponentBg from "../atomics/ComponentBG";
 import backendAddress from "../logic/ServerAddress";
 import {AuthContext} from "../contexts/AuthContext";
+import {FormattedMessage} from "react-intl";
 
 interface BuyerOpinionData {
     name?: string,
@@ -25,7 +26,7 @@ function filterOpinions(opinions: BuyerOpinionData[], opinionType: string): Buye
     }
 }
 
-const BuyersOpinions = () => {
+const BuyersReviews = () => {
     const bgColor = useColorModeValue("gray.100", "gray.900");
     const [opinionsType, setOpinionsType] = useState<string>(opinionsTypes.last5);
     const [opinions, setOpinions] = useState<BuyerOpinionData[]>([]);
@@ -37,6 +38,7 @@ const BuyersOpinions = () => {
             .then(opinionsData => setOpinions(opinionsData));
     }, [authContext]);
 
+    const opinionsToDisplay = filterOpinions(opinions, opinionsType);
     return (
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
                      maxH="calc(92vh - 70px)"
@@ -45,14 +47,19 @@ const BuyersOpinions = () => {
         >
             <VStack spacing={10}>
                 <Box w={"100%"}>
-                    <BuyerOpinionsFilter setOpinionsType={setOpinionsType}/>
+                    <BuyerReviewsFilter setOpinionsType={setOpinionsType}/>
                     <Divider mt={5} w="100%"/>
                 </Box>
 
-                {
-                    filterOpinions(opinions, opinionsType).map((o, i) =>
-                        <BuyerOpinion key={i} name={o.name} rating={o.rating} comment={o.comment}/>
+                {opinionsToDisplay.length > 0 ?
+                    opinionsToDisplay.map((o, i) =>
+                        <BuyerReview key={i} name={o.name} rating={o.rating} comment={o.comment}/>
                     )
+                    :
+                    <Center fontSize="lg" fontWeight={600}>
+                        <FormattedMessage id="BuyersOpinions_NoOpinionsMatchingCriteria"
+                                          defaultMessage={"Could not find any reviews matching given criteria"}/>
+                    </Center>
                 }
 
             </VStack>
@@ -90,4 +97,4 @@ const longComment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " 
 const shortComment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed " +
     "est viverra, bibendum risus eget"
 
-export default BuyersOpinions;
+export default BuyersReviews;
