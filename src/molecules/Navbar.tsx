@@ -55,7 +55,7 @@ const Navbar = (props: MenuProps) => {
             <HStack flexGrow={0}>
                 <ColorModeSwitcher justifySelf="flex-end"/>
                 <Box fontSize={"md"}>
-                    <OptionButton options={[["pl", "Polski"], ["en", "English"]]}
+                    <OptionButton options={[["en", "English"], ["pl", "Polski"]]}
                                   onChange={(event) => props.updateLanguage(event.target.value)}/>
                 </Box>
                 <AccountButton/>

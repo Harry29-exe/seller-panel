@@ -52,22 +52,24 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
 }
 
 export const App = () => {
-    const [lang, setLang] = useState<string>("pl");
-    const [langMessages, setMessages] = useState(undefined);
+    const [langAndMessages, setLangAndMessages] = useState<{ lang: string, messages: any }>(
+        {lang: "en", messages: {}});
+    const [nextLang, setNextLang] = useState<string>("en")
 
     useEffect(
         () => {
-            fetch(`${frontendAddress}/lang/${lang}.json`)
+            fetch(`${frontendAddress}/lang/${nextLang}.json`)
                 .then(response => response.json())
-                .then(json => setMessages(json)
-                );
-        }, [lang]
+                .then(json => {
+                    setLangAndMessages({lang: nextLang, messages: json});
+                });
+        }, [nextLang]
     );
 
     return (
         <ChakraProvider theme={theme}>
-            <IntlProvider defaultLocale="en" locale={lang} messages={langMessages}>
-                <AppRoutes setLang={setLang}/>
+            <IntlProvider defaultLocale="en" locale={langAndMessages.lang} messages={langAndMessages.messages}>
+                <AppRoutes setLang={setNextLang}/>
             </IntlProvider>
         </ChakraProvider>
     )
