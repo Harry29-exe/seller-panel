@@ -1,16 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
-import {Center, useBoolean, VStack} from "@chakra-ui/react";
+import {Center, VStack} from "@chakra-ui/react";
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../contexts/ServerAddress";
-import {defineMessages, FormattedMessage, useIntl} from "react-intl";
+import {defineMessages, FormattedMessage} from "react-intl";
 import ComponentBg from '../atomics/ComponentBG';
 import ChartOptionPanel from "./ChartOptionPanel";
 import {ChartDataInfo, Data} from "../logic/ChartData";
-
-function addId(v: string): string {
-    return "ChartModule_" + v;
-}
 
 export const chartModuleMessages = defineMessages({
     lineChar: {
@@ -40,14 +36,16 @@ export const chartModuleMessages = defineMessages({
     unitsSold: {
         id: "ChartModule_unitsSold",
         defaultMessage: "Units sold"
+    },
+    displaySecondSet: {
+        id: "ChartModule_displaySecondSet",
+        defaultMessage: "Display data from last period"
     }
 })
 
 const ChartModule = () => {
     const [chartDataInfo, updateChartDataInfo] = useState<ChartDataInfo>(new ChartDataInfo({} as Data));
-    const [secondDataSeries, toggleSecondDS] = useBoolean(true);
     const authContext = useContext(AuthContext)
-    const intl = useIntl();
 
     useEffect(() => {
         const dataClone = chartDataInfo.clone();
@@ -73,7 +71,7 @@ const ChartModule = () => {
                         description="chart view greeting"
                     />
                 </Center>
-                <Chart chartData={chartDataInfo} secondDataSeries={secondDataSeries}/>
+                <Chart chartData={chartDataInfo}/>
                 <ChartOptionPanel chartInfo={chartDataInfo.info} updateChart={update}/>
 
             </VStack>

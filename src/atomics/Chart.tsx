@@ -11,7 +11,7 @@ const margins = {
     left: -10
 }
 
-const Chart = (props: { chartData: ChartDataInfo, secondDataSeries: boolean }) => {
+const Chart = (props: { chartData: ChartDataInfo }) => {
     const chartProps = props.chartData;
     let chartData: DataRow[] = getChartData(chartProps);
 
@@ -25,7 +25,7 @@ const Chart = (props: { chartData: ChartDataInfo, secondDataSeries: boolean }) =
                     <YAxis/>
                     <Line type="monotone" dataKey="y1" stroke={"#5c2"}
                           dot={{fill: "#5c2", stroke: "rgba(85,204,34,0.6)"}}/>
-                    {props.secondDataSeries &&
+                    {chartProps.info.secondDataSet &&
                     <Line type="monotone" dataKey="y2" stroke={"#5af"}
                           dot={{fill: "#5af", stroke: "rgba(84,169,253,0.6)"}}/>
                     }
@@ -44,7 +44,7 @@ const Chart = (props: { chartData: ChartDataInfo, secondDataSeries: boolean }) =
                     <XAxis dataKey="x"/>
                     <YAxis/>
                     <Bar type="monotone" dataKey="y1" fill="#5c2"/>
-                    {props.secondDataSeries &&
+                    {chartProps.info.secondDataSet &&
                     <Bar type="monotone" dataKey="y2" fill="#5af"/>
                     }
                 </BarChart>
