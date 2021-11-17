@@ -6,7 +6,34 @@
   "ChartModule_barChart": {
     "defaultMessage": "Bar chart"
   },
+  "ChartModule_day": {
+    "defaultMessage": "Day"
+  },
+  "ChartModule_displaySecondSet": {
+    "defaultMessage": "Display data from last period"
+  },
   "ChartModule_lineChart": {
     "defaultMessage": "Line chart"
+  },
+  "ChartModule_month": {
+    "defaultMessage": "Month"
+  },
+  "ChartModule_salesValue": {
+    "defaultMessage": "Sales value"
+  },
+  "ChartModule_unitsSold": {
+    "defaultMessage": "Units sold"
+  },
+  "ChartModule_year": {
+    "defaultMessage": "Year"
+  },
+  "buyersOpinions": {
+    "defaultMessage": "Buyers Opinions"
+  },
+  "home": {
+    "defaultMessage": "Home"
+  },
+  "orders": {
+    "defaultMessage": "Orders"
   }
 }

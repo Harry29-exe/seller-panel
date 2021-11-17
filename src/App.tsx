@@ -6,23 +6,55 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import theme from "./chakra-config/theme";
 import {AuthContext, AuthContextHolder, AuthHolder} from "./contexts/AuthContext";
 import BuyersOpinions from "./views/BuyersOpinions";
-import {IntlProvider} from "react-intl";
+import {defineMessages, IntlProvider, useIntl} from "react-intl";
 import {frontendAddress} from "./logic/ServerAddress";
 import SalesChart from "./views/SalesChart";
+import Orders from "./views/Orders";
 
-export const I18nMessages = {}
-
-const plMessages = {
-    SalesChart_GREETINGS: {
-        message: "Wykres sprzedarzy",
-        description: "chart view greeting"
+const pageTitlesMessages = defineMessages({
+    home: {
+        id: "home",
+        defaultMessage: "Home"
+    },
+    buyersOpinions: {
+        id: "buyersOpinions",
+        defaultMessage: "Buyers Opinions"
+    },
+    orders: {
+        id: "orders",
+        defaultMessage: "Orders"
     }
+})
+
+export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
+    const [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
+    const intl = useIntl();
+
+    return (<AuthContext.Provider value={new AuthContextHolder(auth,
+        (auth) => updateAuth(auth))}>
+        <BrowserRouter>
+
+
+            <Navbar routes={[
+                {name: intl.formatMessage(pageTitlesMessages.home), path: "/"},
+                {name: intl.formatMessage(pageTitlesMessages.buyersOpinions), path: "/buyers-opinions"},
+                {name: intl.formatMessage(pageTitlesMessages.orders), path: "/orders"}
+            ]} updateLanguage={(lang) => props.setLang(lang)}/>
+
+            <Routes>
+                <Route path={"/"} element={<SalesChart/>}/>
+                <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
+                <Route path={"/orders"} element={<Orders/>}/>
+            </Routes>
+
+        </BrowserRouter>
+    </AuthContext.Provider>)
 }
 
 export const App = () => {
-    const [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
     const [lang, setLang] = useState<string>("pl");
     const [langMessages, setMessages] = useState(undefined);
+
     useEffect(
         () => {
             fetch(`${frontendAddress}/lang/${lang}.json`)
@@ -31,51 +63,12 @@ export const App = () => {
                 );
         }, [lang]
     );
-    console.log(langMessages);
 
     return (
         <ChakraProvider theme={theme}>
             <IntlProvider defaultLocale="en" locale={lang} messages={langMessages}>
-                <AuthContext.Provider value={new AuthContextHolder(auth,
-                    (auth) => updateAuth(auth))}>
-                    <BrowserRouter>
-
-
-                        <Navbar routes={[
-                            {name: "Home", path: "/"},
-                            {name: "Buyers opinions", path: "/buyers-opinions"}
-                        ]} updateLanguage={(lang) => setLang(lang)}/>
-
-                        <Routes>
-                            <Route path={"/"} element={<SalesChart/>}/>
-                            <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
-                        </Routes>
-
-                    </BrowserRouter>
-                </AuthContext.Provider>
+                <AppRoutes setLang={setLang}/>
             </IntlProvider>
         </ChakraProvider>
     )
 }
-
-
-// {/*<Box textAlign="center" fontSize="xl">*/}
-// {/*  <Grid minH="100vh" p={3}>*/}
-// {/*    <ColorModeSwitcher justifySelf="flex-end" />*/}
-// {/*    <VStack spacing={8}>*/}
-// {/*      <Logo h="40vmin" pointerEvents="none" />*/}
-// {/*      <Text>*/}
-// {/*        Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.*/}
-// {/*      </Text>*/}
-// {/*      <Link*/}
-// {/*        color="teal.500"*/}
-// {/*        href="https://chakra-ui.com"*/}
-// {/*        fontSize="2xl"*/}
-// {/*        target="_blank"*/}
-// {/*        rel="noopener noreferrer"*/}
-// {/*      >*/}
-// {/*        Learn Chakra*/}
-// {/*      </Link>*/}
-// {/*    </VStack>*/}
-// {/*  </Grid>*/}
-// {/*</Box>*/}

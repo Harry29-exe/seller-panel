@@ -6,7 +6,34 @@
   "ChartModule_barChart": {
     "defaultMessage": "Diagram słubkowy"
   },
+  "ChartModule_day": {
+    "defaultMessage": "Dzień"
+  },
+  "ChartModule_displaySecondSet": {
+    "defaultMessage": "Dane z ostatniego okresu"
+  },
   "ChartModule_lineChart": {
     "defaultMessage": "Diagram liniowy"
+  },
+  "ChartModule_month": {
+    "defaultMessage": "Miesiąc"
+  },
+  "ChartModule_salesValue": {
+    "defaultMessage": "Obrót"
+  },
+  "ChartModule_unitsSold": {
+    "defaultMessage": "Sprzedane sztuki"
+  },
+  "ChartModule_year": {
+    "defaultMessage": "Rok"
+  },
+  "buyersOpinions": {
+    "defaultMessage": "Opinie kupujących"
+  },
+  "home": {
+    "defaultMessage": "Home"
+  },
+  "orders": {
+    "defaultMessage": "Zamówienia"
   }
 }

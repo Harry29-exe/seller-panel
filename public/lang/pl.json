@@ -11,10 +11,64 @@
       "value": "Diagram słubkowy"
     }
   ],
+  "ChartModule_day": [
+    {
+      "type": 0,
+      "value": "Dzień"
+    }
+  ],
+  "ChartModule_displaySecondSet": [
+    {
+      "type": 0,
+      "value": "Dane z ostatniego okresu"
+    }
+  ],
   "ChartModule_lineChart": [
     {
       "type": 0,
       "value": "Diagram liniowy"
+    }
+  ],
+  "ChartModule_month": [
+    {
+      "type": 0,
+      "value": "Miesiąc"
+    }
+  ],
+  "ChartModule_salesValue": [
+    {
+      "type": 0,
+      "value": "Obrót"
+    }
+  ],
+  "ChartModule_unitsSold": [
+    {
+      "type": 0,
+      "value": "Sprzedane sztuki"
+    }
+  ],
+  "ChartModule_year": [
+    {
+      "type": 0,
+      "value": "Rok"
+    }
+  ],
+  "buyersOpinions": [
+    {
+      "type": 0,
+      "value": "Opinie kupujących"
+    }
+  ],
+  "home": [
+    {
+      "type": 0,
+      "value": "Home"
+    }
+  ],
+  "orders": [
+    {
+      "type": 0,
+      "value": "Zamówienia"
     }
   ]
 }
