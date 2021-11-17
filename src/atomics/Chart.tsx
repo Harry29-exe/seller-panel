@@ -1,21 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, AlertIcon, useBreakpointValue} from "@chakra-ui/react";
 import {Bar, BarChart, CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import {DataOnDiagram, DiagramType, TimePeriod} from "../logic/ChartInfo";
 import {ChartDataInfo, DataRow} from "../logic/ChartData";
 
+const margins = {
+    top: 5,
+    right: 20,
+    bottom: 5,
+    left: -10
+}
 
 const Chart = (props: { chartData: ChartDataInfo }) => {
     const chartProps = props.chartData;
-    const width = useBreakpointValue([280, 440, 700, 900])
+    const [width, setWith] = useState<number>(0);
     const height = useBreakpointValue([350, 400, 500, 550])
-    // const xMargins = useBreakpointValue()
-    const margins = {
-        top: 5,
-        right: 20,
-        bottom: 5,
-        left: -10
-    }
+
+    useEffect(() => {
+        const updateW = () => {
+            let winW = window.innerWidth;
+            let tempW = winW < 480 ?
+                winW * 0.8 :
+                winW * 0.9;
+            setWith(tempW);
+        }
+        updateW();
+        window.addEventListener('resize', updateW);
+
+        return () => {
+            window.removeEventListener('resize', updateW);
+        }
+    }, [])
 
     let chartData: DataRow[] = getChartData(chartProps);
 

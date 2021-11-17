@@ -27,7 +27,7 @@ export interface MenuProps {
 const Navbar = (props: MenuProps) => {
     let bgColor = useColorModeValue("gray.100", "gray.800");
     let shadowColor = useColorModeValue("#aaa", "#000")
-    let navbarType = useBreakpointValue(["phone", "normal"]);
+    let navbarType = useBreakpointValue(["phone", null, null, "normal"]);
     const {pathname} = useLocation();
 
     return (
