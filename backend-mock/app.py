@@ -87,4 +87,9 @@ def chart_data(user):
     }
 
 
+@app.route("/opinions")
+def opinions():
+    return {}
+
+
 app.run()
