@@ -1,7 +1,7 @@
 import math
 import random
 
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -87,9 +87,34 @@ def chart_data(user):
     }
 
 
-@app.route("/opinions")
-def opinions():
-    return {}
+@app.route("/opinions/<user>")
+def opinions(user):
+    if user == "Alex":
+        return jsonify([
+            {
+                "rating": 4,
+                "name": "Bob",
+                "comment": "Sed rhoncus porta turpis ac ornare. Fusce accumsan, ante nec suscipit venenatis, nulla nisl venenatis diam, a commodo nulla justo ac libero."
+            },
+            {
+                "rating": 2,
+                "name": "Alice",
+                "comment": " Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus tempor nunc non quam congue condimentum."
+            },
+            {
+                "rating": 5,
+                "name": "Steve"
+            },
+            {
+                "rating": 5,
+            },
+            {
+                "rating": 3,
+                "name": "John",
+                "comment": "Phasellus viverra lacus ut sapien fermentum volutpat."
+            },
+        ])
+    else:
+        return jsonify([])
 
-
-app.run()
+# app.run()

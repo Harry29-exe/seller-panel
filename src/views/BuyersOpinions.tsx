@@ -1,13 +1,41 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import BuyerOpinion from "../molecules/BuyerOpinion";
 import {Box, Divider, useColorModeValue, VStack} from "@chakra-ui/react";
 import BuyerOpinionsFilter, {opinionsTypes} from "../molecules/BuyerOpinionsFilter";
 import ComponentBg from "../atomics/ComponentBG";
+import backendAddress from "../logic/ServerAddress";
+import {AuthContext} from "../contexts/AuthContext";
+
+interface BuyerOpinionData {
+    name?: string,
+    rating: number,
+    comment?: string
+}
+
+function filterOpinions(opinions: BuyerOpinionData[], opinionType: string): BuyerOpinionData[] {
+    switch (opinionType) {
+        case opinionsTypes.last5:
+            return opinions.slice(0, 5);
+        case opinionsTypes.positive:
+            return opinions.filter(o => o.rating > 3);
+        case opinionsTypes.negative:
+            return opinions.filter(o => o.rating < 3);
+        default:
+            return opinions;
+    }
+}
 
 const BuyersOpinions = () => {
     const bgColor = useColorModeValue("gray.100", "gray.900");
     const [opinionsType, setOpinionsType] = useState<string>(opinionsTypes.last5);
+    const [opinions, setOpinions] = useState<BuyerOpinionData[]>([]);
+    const authContext = useContext(AuthContext);
 
+    useEffect(() => {
+        fetch(`${backendAddress}/opinions/${authContext.authHolder.activeUser}`)
+            .then(response => response.json())
+            .then(opinionsData => setOpinions(opinionsData));
+    }, [authContext]);
 
     return (
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
@@ -21,10 +49,11 @@ const BuyersOpinions = () => {
                     <Divider mt={5} w="100%"/>
                 </Box>
 
-                <BuyerOpinion rating={3} comment={longComment} name={"Alex"}/>
-                <BuyerOpinion rating={4} comment={shortComment} name={"Bob"}/>
-                <BuyerOpinion rating={2}/>
-                <BuyerOpinion rating={5} name={"Alice"}/>
+                {
+                    filterOpinions(opinions, opinionsType).map((o, i) =>
+                        <BuyerOpinion key={i} name={o.name} rating={o.rating} comment={o.comment}/>
+                    )
+                }
 
             </VStack>
         </ComponentBg>
