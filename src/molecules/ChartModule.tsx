@@ -1,18 +1,18 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Chart from "../atomics/Chart";
-import {Center, HStack, VStack} from "@chakra-ui/react";
-import {ChartData, Data, DataOnDiagram, DiagramType, TimePeriod} from '../contexts/ChartContext';
-import OptionButton from "../atomics/OptionButton";
+import {Center, useBoolean, VStack} from "@chakra-ui/react";
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../contexts/ServerAddress";
 import {defineMessages, FormattedMessage, useIntl} from "react-intl";
 import ComponentBg from '../atomics/ComponentBG';
+import ChartOptionPanel from "./ChartOptionPanel";
+import {ChartDataInfo, Data} from "../logic/ChartData";
 
 function addId(v: string): string {
     return "ChartModule_" + v;
 }
 
-const messages = defineMessages({
+export const chartModuleMessages = defineMessages({
     lineChar: {
         id: `ChartModule_lineChart`,
         defaultMessage: "Line chart"
@@ -20,27 +20,48 @@ const messages = defineMessages({
     barChart: {
         id: "ChartModule_barChart",
         defaultMessage: "Bar chart"
+    },
+    day: {
+        id: "ChartModule_day",
+        defaultMessage: "Day"
+    },
+    month: {
+        id: "ChartModule_month",
+        defaultMessage: "Month"
+    },
+    year: {
+        id: "ChartModule_year",
+        defaultMessage: "Year"
+    },
+    salesValue: {
+        id: "ChartModule_salesValue",
+        defaultMessage: "Sales value"
+    },
+    unitsSold: {
+        id: "ChartModule_unitsSold",
+        defaultMessage: "Units sold"
     }
 })
 
 const ChartModule = () => {
-    const [chartData, updateChartData] = useState<ChartData>(new ChartData({} as Data));
+    const [chartDataInfo, updateChartDataInfo] = useState<ChartDataInfo>(new ChartDataInfo({} as Data));
+    const [secondDataSeries, toggleSecondDS] = useBoolean(true);
     const authContext = useContext(AuthContext)
     const intl = useIntl();
 
     useEffect(() => {
-        const dataClone = chartData.clone();
+        const dataClone = chartDataInfo.clone();
         const activeUser = authContext.authHolder.activeUser;
         fetch(`${backendAddress}/chart-data/${activeUser}`)
             .then(response => response.json())
             .then(body => {
                 dataClone.data = body;
-                updateChartData(dataClone);
+                updateChartDataInfo(dataClone);
             });
         }, [authContext]
     );
 
-    const update = () => updateChartData(chartData.clone());
+    const update = () => updateChartDataInfo(chartDataInfo.clone());
 
     return (
         <ComponentBg px={4} py={5}>
@@ -52,34 +73,9 @@ const ChartModule = () => {
                         description="chart view greeting"
                     />
                 </Center>
-                <Chart chartData={chartData}/>
+                <Chart chartData={chartDataInfo} secondDataSeries={secondDataSeries}/>
+                <ChartOptionPanel chartInfo={chartDataInfo.info} updateChart={update}/>
 
-                <HStack justifyContent="space-evenly" w="100%">
-
-                <OptionButton options={[
-                    [DiagramType.LINE_CHART, intl.formatMessage(messages.lineChar)],
-                    [DiagramType.BAR_CHART, intl.formatMessage(messages.barChart)]
-                ]} onChange={(event: any) => {
-                    chartData.diagramType = Number.parseInt(event.target.value);
-                    update();
-                }}/>
-                <OptionButton options={[
-                    [TimePeriod.DAY, "Day"],
-                    [TimePeriod.YEAR, "Year"],
-                    [TimePeriod.MONTH, "Month"]
-                ]} onChange={(event: any) => {
-                    chartData.timePeriod = Number.parseInt(event.target.value);
-                    update();
-                }}/>
-                <OptionButton options={[
-                    [DataOnDiagram.SALES_VALUE, "Sales value"],
-                    [DataOnDiagram.SOLD_UNITS, "Units sold"]
-                ]} onChange={(event: any) => {
-                    chartData.dataType = Number.parseInt(event.target.value);
-                    update();
-                }}/>
-
-                </HStack>
             </VStack>
         </ComponentBg>
     );

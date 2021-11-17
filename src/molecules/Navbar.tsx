@@ -31,7 +31,7 @@ const Navbar = (props: MenuProps) => {
     const {pathname} = useLocation();
 
     return (
-        <HStack w="100vw" h="70px" px={4} py={2}
+        <HStack w="100%" h="70px" px={4} py={2}
                 bg={bgColor}
                 shadow={`0px 2px 8px 0px ${shadowColor}`}
                 fontSize={"3xl"} fontWeight={"bold"}>
