@@ -21,7 +21,9 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
             let winW = window.innerWidth;
             let tempW = winW < 480 ?
                 winW * 0.8 :
-                winW * 0.9;
+                winW > 900 ?
+                    winW * 0.7 :
+                    winW * 0.8;
             setWith(tempW);
         }
         updateW();
