@@ -26,13 +26,15 @@ export interface MenuProps {
 
 const Navbar = (props: MenuProps) => {
     let bgColor = useColorModeValue("gray.100", "gray.800");
-    let shadowColor = useColorModeValue("#aaa", "#000")
+    let shadowColor = useColorModeValue("#aaa", "#000");
+    let nextNavbarBg = useColorModeValue("#e7f3ff", "#0f1017");
+    document.documentElement.style.setProperty("--navbar-bg", nextNavbarBg)
     let navbarType = useBreakpointValue(["phone", "mobile", null, "normal"]);
     const {pathname} = useLocation();
 
     return (
         <HStack w="100%" h="70px" px={4} py={2}
-                bg={bgColor}
+                bg={bgColor} pos={"absolute"} zIndex={10}
                 shadow={`0px 2px 8px 0px ${shadowColor}`}
                 fontSize={"3xl"} fontWeight={"bold"}>
             {navbarType === "phone" || navbarType === "mobile" ?
@@ -54,6 +56,7 @@ const Navbar = (props: MenuProps) => {
 
             <HStack flexGrow={0}>
                 <ColorModeSwitcher justifySelf="flex-end"/>
+
                 <Box fontSize={"md"}>
                     <OptionButton options={[["en", "English"], ["pl", "Polski"]]}
                                   onChange={(event) => props.updateLanguage(event.target.value)}/>

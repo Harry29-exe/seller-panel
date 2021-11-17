@@ -5,16 +5,18 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(26, 32, 44);
-    border: 1px solid black;
+    /*background: rgb(26, 32, 44);*/
+    background: var(--navbar-bg);
+    /*border: 1px solid black;*/
     border-radius: 5px;
-    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.6);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     background: #eb8836;
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.3);
     /*background: #4299E1;*/
     padding-bottom: 5px;
     padding-top: 5px;

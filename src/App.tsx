@@ -41,7 +41,8 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                 {name: intl.formatMessage(pageTitlesMessages.orders), path: "/orders"}
             ]} updateLanguage={(lang) => props.setLang(lang)}/>
 
-            <Box pos="absolute" w={"100vw"} h={"calc(100vh - 70px)"} maxH={"calc(100vh - 70px)"} overflow="auto">
+            <Box pos="absolute" mt="70px" w={"100vw"} h={"calc(100vh - 70px)"} maxH={"calc(100vh - 70px)"}
+                 overflow="auto">
                 <Routes>
                     <Route path={"/"} element={<SalesChart/>}/>
                     <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
