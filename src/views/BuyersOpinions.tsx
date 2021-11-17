@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import BuyerOpinion from "../molecules/BuyerOpinion";
-import {Box, Divider, VStack} from "@chakra-ui/react";
+import {Box, Divider, useColorModeValue, VStack} from "@chakra-ui/react";
 import BuyerOpinionsFilter, {opinionsTypes} from "../molecules/BuyerOpinionsFilter";
 import ComponentBg from "../atomics/ComponentBG";
 
 const BuyersOpinions = () => {
+    const bgColor = useColorModeValue("gray.100", "gray.900");
     const [opinionsType, setOpinionsType] = useState<string>(opinionsTypes.last5);
 
 
@@ -12,7 +13,7 @@ const BuyersOpinions = () => {
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
                      maxH="calc(92vh - 70px)"
                      mx={"auto"} mt="4vh" mb="4vh" p={[5, 7, 10]}
-                     bg={"gray.900"} overflowY="auto"
+                     bg={bgColor} overflowY="auto"
         >
             <VStack spacing={10}>
                 <Box w={"100%"}>

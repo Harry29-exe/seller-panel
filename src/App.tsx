@@ -1,6 +1,6 @@
 import * as React from "react"
 import {useEffect, useState} from "react"
-import {ChakraProvider,} from "@chakra-ui/react"
+import {Box, ChakraProvider,} from "@chakra-ui/react"
 import Navbar from "./molecules/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import theme from "./chakra-config/theme";
@@ -41,11 +41,13 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                 {name: intl.formatMessage(pageTitlesMessages.orders), path: "/orders"}
             ]} updateLanguage={(lang) => props.setLang(lang)}/>
 
-            <Routes>
-                <Route path={"/"} element={<SalesChart/>}/>
-                <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
-                <Route path={"/orders"} element={<Orders/>}/>
-            </Routes>
+            <Box pos="absolute" w={"100vw"} h={"calc(100vh - 70px)"} maxH={"calc(100vh - 70px)"} overflow="auto">
+                <Routes>
+                    <Route path={"/"} element={<SalesChart/>}/>
+                    <Route path={"/buyers-opinions"} element={<BuyersOpinions/>}/>
+                    <Route path={"/orders"} element={<Orders/>}/>
+                </Routes>
+            </Box>
 
         </BrowserRouter>
     </AuthContext.Provider>)

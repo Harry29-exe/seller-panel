@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Stack, useBreakpointValue} from "@chakra-ui/react";
+import {Box, Stack} from "@chakra-ui/react";
 import OptionButton from "../atomics/OptionButton";
 import {defineMessages, FormattedMessage, useIntl} from "react-intl";
 
@@ -30,13 +30,13 @@ export const opinionsTypes = {
 }
 
 const BuyerOpinionsFilter = (props: { setOpinionsType: (v: string) => any }) => {
-    const flexDirection = useBreakpointValue(["column", null, "row"]);
     const intl = useIntl();
 
     return (
 
-        <Stack w="100%" spacing={[3, 4, 5]} direction={["column", null, "row"]}>
-            <Box fontSize="lg" fontWeight={600} alignSelf="center" textAlign={["center", null, "start"]}>
+        <Stack w="100%" spacing={[3, 4, 5]} direction={["column", null, "row"]}
+               justifyContent="space-between">
+            <Box fontSize="xl" fontWeight={600} alignSelf="center" textAlign={["center", null, "start"]}>
 
                 <FormattedMessage id={"BuyerOpinions_opinionsToDisplay"}
                                   defaultMessage="Select what opinions you want to be displayed:"/>

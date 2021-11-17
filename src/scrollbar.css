@@ -15,6 +15,7 @@
 ::-webkit-scrollbar-thumb {
     border: 1px solid black;
     background: #eb8836;
+    /*background: #4299E1;*/
     padding-bottom: 5px;
     padding-top: 5px;
     border-radius: 6px;
@@ -23,4 +24,5 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #c06f2c;
+    /*background: #4299E1;*/
 }

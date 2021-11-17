@@ -11,6 +11,7 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
+    useColorModeValue,
     useDisclosure,
     VStack
 } from "@chakra-ui/react";
@@ -23,31 +24,32 @@ class LoginData {
 
 const LoginModal = () => {
     const {isOpen, onOpen, onClose} = useDisclosure();
+    const modalBg = useColorModeValue("gray.100", "gray.900");
     const loginData = useRef<LoginData>(new LoginData())
     const authContext = useContext(AuthContext);
 
     return (
         <>
-            <Button onClick={onOpen}>Login</Button>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Button onClick={onOpen} bg={"primary.400"}>Login</Button>
+            <Modal isOpen={isOpen} onClose={onClose} size={"lg"}>
                 <ModalOverlay/>
-                <ModalContent>
+                <ModalContent bg={modalBg} pos={"fixed"} top={"0%"} px={5} py={2}>
                     <ModalHeader>
                         <Box pos="relative">
                             <Center flexGrow={4}>Login</Center>
                             <CloseButton onClick={onClose} pos="absolute" right={0} top={0}/>
                         </Box>
                     </ModalHeader>
-                    <ModalBody>
-                        <VStack>
+                    <ModalBody py={4}>
+                        <VStack spacing={2}>
                             <Input placeholder="Login" onChange={(event: any) =>
                                 loginData.current.username = event.target.value}/>
                             <Input placeholder="Password" type="password" onChange={(event: any) =>
                                 loginData.current.password = event.target.value}/>
                         </VStack>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme="green" onClick={() =>
+                    <ModalFooter pt={6}>
+                        <Button bg={"primary.400"} onClick={() =>
                             authContext.login(loginData.current.username, loginData.current.password)}>
                             Login
                         </Button>

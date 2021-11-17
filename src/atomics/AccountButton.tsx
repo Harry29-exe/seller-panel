@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Box, Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {AuthContext} from "../contexts/AuthContext";
-import LoginModal from "../molecules/LoginModal";
+import LoginModal from "./LoginModal";
 
 const AccountButton = () => {
     const authContext = useContext(AuthContext);

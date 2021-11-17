@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Rating from "../atomics/Rating";
 import "../scrollbar.css";
+import {useShadowColor} from "../logic/useShadowColor";
 
 export interface BuyerOpinionProps {
     name?: string,
@@ -25,13 +26,13 @@ export interface BuyerOpinionProps {
 }
 
 const BuyerOpinion = (props: BuyerOpinionProps) => {
-    const customerBg = useColorModeValue("gray.300", "gray.300")
-    const bg = useColorModeValue("gray.100", "gray.900")
+    const bg = useColorModeValue("gray.100", "gray.900");
+    const shadowColor = useShadowColor();
     const {isOpen, onOpen, onClose} = useDisclosure();
 
     return (
         <>
-            <VStack bg={bg} w="100%" shadow={"2px 2px 4px 2px black"} p={5} pb={7}
+            <VStack bg={bg} w="100%" shadow={`2px 2px 4px 2px ${shadowColor}`} p={5} pb={7}
                     borderRadius="lg" onClick={onOpen} _hover={{cursor: "pointer"}}>
 
                 <OpinionHeader rating={props.rating} name={props.name}/>
@@ -45,7 +46,7 @@ const BuyerOpinion = (props: BuyerOpinionProps) => {
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={"3xl"}>
                 <ModalOverlay/>
-                <ModalContent bg={"gray.800"} mx={5}>
+                <ModalContent bg={bg} mx={5}>
                     <ModalHeader>
                         <OpinionHeader rating={props.rating} name={props.name}/>
                     </ModalHeader>
