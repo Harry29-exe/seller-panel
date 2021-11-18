@@ -45,7 +45,7 @@ export const chartModuleMessages = defineMessages({
 
 const ChartModule = () => {
     const [chartDataInfo, updateChartDataInfo] = useState<ChartDataInfo>(new ChartDataInfo({} as Data));
-    const authContext = useContext(AuthContext)
+    const authContext = useContext(AuthContext);
 
     useEffect(() => {
         const dataClone = chartDataInfo.clone();
@@ -62,8 +62,7 @@ const ChartModule = () => {
     const update = () => updateChartDataInfo(chartDataInfo.clone());
 
     return (
-        <ComponentBg px={4} py={5}>
-
+        <ComponentBg py={5}>
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
                     <FormattedMessage

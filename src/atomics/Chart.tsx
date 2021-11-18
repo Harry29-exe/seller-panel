@@ -14,25 +14,27 @@ const margins = {
 const Chart = (props: { chartData: ChartDataInfo }) => {
     const chartProps = props.chartData;
     const [width, setWith] = useState<number>(0);
+    const fallbackW = useBreakpointValue([0.8, 0.8, 670, 810, 910])
     const height = useBreakpointValue([350, 400, 500, 550])
 
     useEffect(() => {
         const updateW = () => {
-            let winW = window.innerWidth;
-            let tempW = winW < 480 ?
-                winW * 0.8 :
-                winW > 900 ?
-                    winW * 0.7 :
-                    winW * 0.8;
-            setWith(tempW);
+            if (window.innerWidth < 400) {
+                setWith(window.innerWidth * 0.85)
+            } else if (!fallbackW || fallbackW <= 1.0) {
+                setWith(window.innerWidth * 0.8);
+            } else if (width !== fallbackW) {
+                setWith(fallbackW);
+            }
         }
+
         updateW();
         window.addEventListener('resize', updateW);
 
         return () => {
             window.removeEventListener('resize', updateW);
         }
-    }, [])
+    }, [fallbackW])
 
     const chartData: DataRow[] = getChartData(chartProps);
     const chartInfo = props.chartData.info;

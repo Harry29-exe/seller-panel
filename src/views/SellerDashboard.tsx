@@ -20,7 +20,7 @@ const SellerDashboard = () => {
         return (
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
-                <VStack>
+                <VStack spacing={6} mt={5} mb={12}>
                     <SalesChart/>
                     <Orders/>
                     <BuyersReviews/>

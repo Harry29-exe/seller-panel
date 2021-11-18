@@ -46,8 +46,7 @@ const BuyersReviews = () => {
 
     const opinionsToDisplay = filterOpinions(opinions, opinionsType);
     return (
-        <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
-                     mx={"auto"} my="4vh" px={[3, 5, 5]} pb={1} pt={[3, 5]}
+        <ComponentBg mx={"auto"} my="4vh" pb={1} pt={[3, 5]}
         >
             <SellerPanelComponentRegister message={message} elementId={"buyersReviews"}/>
             <VStack spacing={3} p={[3, 5]}>

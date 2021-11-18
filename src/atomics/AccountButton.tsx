@@ -23,9 +23,10 @@ const AccountButton = () => {
                                 <MenuItem key={user} onClick={() => authContext.changeActiveUser(user)}>
                                     {user}
                                 </MenuItem>
+
                             )
                         }
-                        <MenuItem>Logout</MenuItem>
+                        <MenuItem onClick={() => authContext.logout()}>Logout</MenuItem>
                     </MenuList>
                 </Menu>
             </Box>

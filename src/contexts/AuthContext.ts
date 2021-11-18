@@ -45,6 +45,11 @@ export class AuthContextHolder {
         });
     }
 
+    public logout() {
+        this.authHolder = new AuthHolder();
+        this.updateFunction(this.authHolder);
+    }
+
     public changeActiveUser(user: string) {
         const authHolder = this.authHolder;
         if (authHolder.users !== undefined && authHolder.users.find((u) => u == user)) {
