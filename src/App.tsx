@@ -32,6 +32,7 @@ const pageTitlesMessages = defineMessages({
 
 export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
     const [auth, updateAuth] = useState<AuthHolder>(new AuthHolder());
+    // const [isNavbarOn, {on, off, toggle}] = useBoolean(true);
     const intl = useIntl();
 
     return (
@@ -39,20 +40,24 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
             (auth) => updateAuth(auth))}>
             <BrowserRouter>
 
+                <Box pos="absolute" w={"100vw"} h="100vh"
+                    // mt="70px" h={"calc(100vh - 70px)"} maxH={"calc(100vh - 70px)"}
+                     overflow="auto">
+                    <Navbar
+                        // isNavbarOn={isNavbarOn} navbarOn={on} navbarOff={off}
+                        routes={[
+                            {name: intl.formatMessage(pageTitlesMessages.home), path: "/"},
+                            {name: intl.formatMessage(pageTitlesMessages.sellerDashboard), path: "/seller-dashboard"}
+                        ]} updateLanguage={(lang) => props.setLang(lang)}/>
+                    <Box w={1} h={"70px"}/>
 
-                <Navbar routes={[
-                    {name: intl.formatMessage(pageTitlesMessages.home), path: "/"},
-                    {name: intl.formatMessage(pageTitlesMessages.sellerDashboard), path: "/seller-dashboard"}
-                ]} updateLanguage={(lang) => props.setLang(lang)}/>
-
-                <Box pos="absolute" mt="70px" w={"100vw"} h={"calc(100vh - 70px)"} maxH={"calc(100vh - 70px)"}
-                 overflow="auto">
                     <Routes>
                         <Route path={"/"} element={<ServiceMockPage/>}/>
                         <Route path={"/seller-dashboard"} element={<SellerDashboard/>}/>
                         <Route path={"/seller-dashboard/orders"} element={<OrdersPage/>}/>
                     </Routes>
-            </Box>
+
+                </Box>
 
         </BrowserRouter>
     </AuthContext.Provider>)

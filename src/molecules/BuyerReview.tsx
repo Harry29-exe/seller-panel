@@ -38,7 +38,7 @@ const BuyerReview = (props: BuyerOpinionProps) => {
                 <OpinionHeader rating={props.rating} name={props.name}/>
 
                 {props.comment &&
-                <Box w="100%" maxH="70px" overflowY="auto">
+                <Box w="100%" maxH={["120px", "70px"]} overflowY="auto">
                     {props.comment}
                 </Box>
                 }

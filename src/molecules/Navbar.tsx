@@ -21,7 +21,10 @@ import OptionButton from "../atomics/OptionButton";
 
 export interface MenuProps {
     routes: NavbarLinkProps[],
-    updateLanguage: (lang: string) => any
+    updateLanguage: (lang: string) => any,
+    // isNavbarOn: boolean,
+    // navbarOn: () => void,
+    // navbarOff: () => void
 }
 
 const Navbar = (props: MenuProps) => {

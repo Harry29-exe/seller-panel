@@ -49,8 +49,8 @@ const BuyersReviews = () => {
         <ComponentBg mx={"auto"} my="4vh" pb={1} pt={[3, 5]}
         >
             <SellerPanelWidgetPin message={message} elementId={"buyersReviews"}/>
-            <VStack spacing={3} p={[3, 5]}>
-                <Box w={"100%"}>
+            <VStack spacing={3} p={[1, 3, 5]}>
+                <Box w={"100%"} p={[2, 1, 0]}>
                     <BuyerReviewsFilter setOpinionsType={setOpinionsType}/>
                     <Divider mt={5} w="100%"/>
                 </Box>
