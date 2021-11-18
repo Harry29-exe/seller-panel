@@ -3,10 +3,16 @@ import Chart from "../atomics/Chart";
 import {Center, VStack} from "@chakra-ui/react";
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../logic/ServerAddress";
-import {defineMessages, FormattedMessage} from "react-intl";
+import {defineMessage, defineMessages, FormattedMessage} from "react-intl";
 import ComponentBg from '../atomics/ComponentBG';
 import ChartOptionPanel from "./ChartOptionPanel";
 import {ChartDataInfo, Data} from "../logic/ChartData";
+import SellerPanelWidgetPin from "./SellerPanelWidgetPin";
+
+const message = defineMessage({
+    id: "salesChart",
+    defaultMessage: "Sales chart"
+});
 
 export const chartModuleMessages = defineMessages({
     lineChar: {
@@ -63,6 +69,7 @@ const ChartModule = () => {
 
     return (
         <ComponentBg>
+            <SellerPanelWidgetPin message={message} elementId={"salesChart"}/>
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
                     <FormattedMessage

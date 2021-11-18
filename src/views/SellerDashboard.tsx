@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import {Center, VStack} from "@chakra-ui/react";
-import SalesChart from "./SalesChart";
 import BuyersReviews from "./BuyersReviews";
 import Orders from './Orders';
 import {AuthContext} from "../contexts/AuthContext";
 import SellerPanelNavbar from "../molecules/SellerPanelNavbar";
 import {SellerPanelProvider} from "../contexts/SellerPanelProvider";
+import ChartModule from "../molecules/ChartModule";
 
 const SellerDashboard = () => {
     const authContext = useContext(AuthContext);
@@ -20,8 +20,8 @@ const SellerDashboard = () => {
         return (
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
-                <VStack spacing={16} mt={3} mb={12}>
-                    <SalesChart/>
+                <VStack spacing={16} mt={12} mb={12}>
+                    <ChartModule/>
                     <BuyersReviews/>
                     <Orders/>
                 </VStack>

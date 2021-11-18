@@ -66,11 +66,11 @@ export class SellerPanelContextHolder {
     }
 
     public scrollToPath(elementId: string) {
-        if (this.holder.paths[0].elementId === elementId) {
-            document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "center"});
-        } else {
-            document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "start"});
-        }
+        // if (this.holder.paths[0].elementId === elementId) {
+        //     document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "center"});
+        // } else {
+        document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "start"});
+        // }
     }
 
     private update() {

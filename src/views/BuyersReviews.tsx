@@ -6,7 +6,7 @@ import ComponentBg from "../atomics/ComponentBG";
 import backendAddress from "../logic/ServerAddress";
 import {AuthContext} from "../contexts/AuthContext";
 import {defineMessage, FormattedMessage} from "react-intl";
-import SellerPanelComponentRegister from "../molecules/SellerPanelComponentRegister";
+import SellerPanelWidgetPin from "../molecules/SellerPanelWidgetPin";
 
 interface BuyerOpinionData {
     name?: string,
@@ -48,7 +48,7 @@ const BuyersReviews = () => {
     return (
         <ComponentBg mx={"auto"} my="4vh" pb={1} pt={[3, 5]}
         >
-            <SellerPanelComponentRegister message={message} elementId={"buyersReviews"}/>
+            <SellerPanelWidgetPin message={message} elementId={"buyersReviews"}/>
             <VStack spacing={3} p={[3, 5]}>
                 <Box w={"100%"}>
                     <BuyerReviewsFilter setOpinionsType={setOpinionsType}/>

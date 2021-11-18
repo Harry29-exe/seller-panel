@@ -1,8 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 import {SellerPanelContext} from "../contexts/SellerPanelContext";
 import {MessageDescriptor} from "react-intl";
+import {Box} from "@chakra-ui/react";
 
-const SellerPanelComponentRegister = (props: { message: MessageDescriptor, elementId: string }) => {
+const SellerPanelWidgetPin = (props: { message: MessageDescriptor, elementId: string }) => {
     const spContext = useContext(SellerPanelContext);
 
 
@@ -16,8 +17,8 @@ const SellerPanelComponentRegister = (props: { message: MessageDescriptor, eleme
 
 
     return (
-        <div id={props.elementId}/>
+        <Box id={props.elementId} pos="absolute" mt={"-100px"}/>
     );
 };
 
-export default SellerPanelComponentRegister;
+export default SellerPanelWidgetPin;
