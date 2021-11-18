@@ -7,7 +7,6 @@ const SalesChart = () => {
         <VStack mx={[3, 5, 7]}>
             <Box h={"50px"}/>
             <ChartModule/>
-            <Box h={"500px"}/>
         </VStack>
     );
 };

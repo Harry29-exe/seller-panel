@@ -27,7 +27,7 @@ function filterOpinions(opinions: BuyerOpinionData[], opinionType: string): Buye
 }
 
 const BuyersReviews = () => {
-    const bgColor = useColorModeValue("gray.100", "gray.900");
+    const bgColor = useColorModeValue("gray.100", "gray.800");
     const [opinionsType, setOpinionsType] = useState<string>(opinionsTypes.last5);
     const [opinions, setOpinions] = useState<BuyerOpinionData[]>([]);
     const authContext = useContext(AuthContext);
@@ -41,9 +41,8 @@ const BuyersReviews = () => {
     const opinionsToDisplay = filterOpinions(opinions, opinionsType);
     return (
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
-                     maxH="calc(92vh - 70px)"
+            // maxH="calc(92vh - 70px)"
                      mx={"auto"} my="4vh" px={[3, 5, 5]} pb={1} pt={[3, 5]}
-                     bg={bgColor}
         >
             <VStack spacing={3} p={[3, 5]}>
                 <Box w={"100%"}>
@@ -51,7 +50,7 @@ const BuyersReviews = () => {
                     <Divider mt={5} w="100%"/>
                 </Box>
 
-                <VStack overflowY="auto" w="100%" h="70vh" px={[3, 5]} pt={4} pb={1} spacing={10}
+                <VStack overflowY="auto" w="100%" h={["65vh", "65vh", "70vh"]} px={[3, 5]} pt={4} pb={1} spacing={10}
                         borderBottom={"1px solid rgba(1, 1, 1, 1)"}>
                     {opinionsToDisplay.length > 0 ?
                         opinionsToDisplay.map((o, i) =>

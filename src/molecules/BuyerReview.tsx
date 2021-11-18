@@ -26,7 +26,7 @@ export interface BuyerOpinionProps {
 }
 
 const BuyerReview = (props: BuyerOpinionProps) => {
-    const bg = useColorModeValue("gray.100", "gray.900");
+    const bg = useColorModeValue("gray.100", "gray.800");
     const shadowColor = useShadowColor();
     const {isOpen, onOpen, onClose} = useDisclosure();
 
