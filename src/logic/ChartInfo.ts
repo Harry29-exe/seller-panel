@@ -27,6 +27,10 @@ export class ColorRGBA {
         this.b = b;
         this.a = a;
     }
+
+    public toRGBA(a?: number): string {
+        return `rgba(${this.r},${this.g},${this.b},${a ? a : this.a})`
+    }
 }
 
 export class ChartInfo {
@@ -35,6 +39,6 @@ export class ChartInfo {
     public isDataDuringUpdate: boolean = false;
     public timePeriod: TimePeriod = TimePeriod.DAY;
     public secondDataSet: boolean = true;
-    public firstSetColor: ColorRGBA = new ColorRGBA(85, 204, 34, 1);
-    public secondSetColor: ColorRGBA = new ColorRGBA(84, 169, 253, 1);
+    public firstSetColor: ColorRGBA = new ColorRGBA(237, 137, 54, 1);
+    public secondSetColor: ColorRGBA = new ColorRGBA(66, 153, 225, 1);
 }

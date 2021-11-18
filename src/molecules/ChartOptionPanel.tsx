@@ -47,7 +47,7 @@ const ChartOptionPanel = (props: ChartOptionPanelProps) => {
             }}/>
 
             <HStack fontSize="md" py={py}>
-                <Switch defaultChecked={true}
+                <Switch defaultChecked={true} colorScheme="blue"
                         onChange={event => {
                             chartInfo.secondDataSet = !chartInfo.secondDataSet;
                             update();

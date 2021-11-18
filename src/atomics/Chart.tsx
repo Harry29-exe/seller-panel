@@ -34,7 +34,8 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
         }
     }, [])
 
-    let chartData: DataRow[] = getChartData(chartProps);
+    const chartData: DataRow[] = getChartData(chartProps);
+    const chartInfo = props.chartData.info;
 
     if (chartProps.info.diagramType === DiagramType.LINE_CHART) {
         return (
@@ -44,11 +45,17 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
                     <CartesianGrid stroke={"rgba(204,204,204,0.4)"}/>
                     <XAxis dataKey="x"/>
                     <YAxis/>
-                    <Line type="monotone" dataKey="y1" stroke={"#5c2"}
-                          dot={{fill: "#5c2", stroke: "rgba(85,204,34,0.6)"}}/>
+                    <Line type="monotone" dataKey="y1" stroke={chartInfo.firstSetColor.toRGBA()}
+                          dot={{
+                              fill: chartInfo.firstSetColor.toRGBA(0.6),
+                              stroke: chartInfo.firstSetColor.toRGBA(0.6)
+                          }}/>
                     {chartProps.info.secondDataSet &&
-                    <Line type="monotone" dataKey="y2" stroke={"#5af"}
-                          dot={{fill: "#5af", stroke: "rgba(84,169,253,0.6)"}}/>
+                    <Line type="monotone" dataKey="y2" stroke={chartInfo.secondSetColor.toRGBA()}
+                          dot={{
+                              fill: chartInfo.secondSetColor.toRGBA(0.6),
+                              stroke: chartInfo.secondSetColor.toRGBA(0.6)
+                          }}/>
                     }
                     <Tooltip/>
 
@@ -64,9 +71,9 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
                     <CartesianGrid stroke={"#ccc"}/>
                     <XAxis dataKey="x"/>
                     <YAxis/>
-                    <Bar type="monotone" dataKey="y1" fill="#5c2"/>
+                    <Bar type="monotone" dataKey="y1" fill={chartInfo.firstSetColor.toRGBA()}/>
                     {chartProps.info.secondDataSet &&
-                    <Bar type="monotone" dataKey="y2" fill="#5af"/>
+                    <Bar type="monotone" dataKey="y2" fill={chartInfo.secondSetColor.toRGBA()}/>
                     }
                 </BarChart>
             </>
