@@ -5,7 +5,8 @@ import BuyerReviewsFilter, {opinionsTypes} from "../molecules/BuyerReviewsFilter
 import ComponentBg from "../atomics/ComponentBG";
 import backendAddress from "../logic/ServerAddress";
 import {AuthContext} from "../contexts/AuthContext";
-import {FormattedMessage} from "react-intl";
+import {defineMessage, FormattedMessage} from "react-intl";
+import SellerPanelComponentRegister from "../molecules/SellerPanelComponentRegister";
 
 interface BuyerOpinionData {
     name?: string,
@@ -26,6 +27,11 @@ function filterOpinions(opinions: BuyerOpinionData[], opinionType: string): Buye
     }
 }
 
+const message = defineMessage({
+    id: "buyersReviews",
+    defaultMessage: "Buyers reviews"
+});
+
 const BuyersReviews = () => {
     const bgColor = useColorModeValue("gray.100", "gray.800");
     const [opinionsType, setOpinionsType] = useState<string>(opinionsTypes.last5);
@@ -41,9 +47,9 @@ const BuyersReviews = () => {
     const opinionsToDisplay = filterOpinions(opinions, opinionsType);
     return (
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
-            // maxH="calc(92vh - 70px)"
                      mx={"auto"} my="4vh" px={[3, 5, 5]} pb={1} pt={[3, 5]}
         >
+            <SellerPanelComponentRegister message={message} elementId={"buyersReviews"}/>
             <VStack spacing={3} p={[3, 5]}>
                 <Box w={"100%"}>
                     <BuyerReviewsFilter setOpinionsType={setOpinionsType}/>

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Rating from "../atomics/Rating";
 import "../scrollbar.css";
-import {useShadowColor} from "../logic/useShadowColor";
+import {useShadowColor} from "../logic/hooks/useShadowColor";
 
 export interface BuyerOpinionProps {
     name?: string,
