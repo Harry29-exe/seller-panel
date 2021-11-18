@@ -92,14 +92,24 @@ def opinions(user):
     if user == "Alex":
         return jsonify([
             {
-                "rating": 4,
+                "rating": 2,
                 "name": "Bob",
                 "comment": "Sed rhoncus porta turpis ac ornare. Fusce accumsan, ante nec suscipit venenatis, nulla nisl venenatis diam, a commodo nulla justo ac libero."
             },
             {
-                "rating": 2,
+                "rating": 4,
+                "name": "Emma",
+                "comment": "Sed vitae ante in risus tincidunt cursus in vitae odio. Phasellus rhoncus interdum nisi vitae tincidunt. Sed suscipit diam libero,"
+                           " nec sagittis massa consectetur nec. Donec dignissim felis mauris, eget pellentesque sapien elementum a. Proin mollis luctus metus nec "
+                           "lobortis. Vestibulum id venenatis mauris. Donec mollis scelerisque turpis. In vel arcu a nunc feugiat porta vitae at ante. Curabitur ac"
+                           " tortor pulvinar, interdum nulla quis, fermentum mauris. Vestibulum purus est, dignissim quis sodales at, vulputate at orci. Suspendisse "
+                           "molestie cursus velit, ut suscipit dolor eleifend sed. Aenean euismod vestibulum sapien, ut tincidunt lacus cursus at. Pellentesque non lorem elit. "
+                           "In hac habitasse platea dictumst. Cras nec elit sit amet massa vehicula cursus."
+            },
+            {
+                "rating": 4,
                 "name": "Alice",
-                "comment": " Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus tempor nunc non quam congue condimentum."
+                "comment": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus tempor nunc non quam congue condimentum."
             },
             {
                 "rating": 5,
@@ -113,6 +123,10 @@ def opinions(user):
                 "name": "John",
                 "comment": "Phasellus viverra lacus ut sapien fermentum volutpat."
             },
+            {
+                "rating": 1,
+                "name": "Barbra"
+            }
         ])
     else:
         return jsonify([])
