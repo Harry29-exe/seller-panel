@@ -62,7 +62,7 @@ const ChartModule = () => {
     const update = () => updateChartDataInfo(chartDataInfo.clone());
 
     return (
-        <ComponentBg py={5}>
+        <ComponentBg>
             <VStack>
                 <Center fontSize="lg" fontWeight={600}>
                     <FormattedMessage

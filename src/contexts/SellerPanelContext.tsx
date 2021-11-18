@@ -1,4 +1,4 @@
-import {createContext, PropsWithChildren, useEffect, useState} from "react";
+import {createContext} from "react";
 import {MessageDescriptor} from "react-intl";
 
 export interface SellerPanelPath {
@@ -6,7 +6,7 @@ export interface SellerPanelPath {
     elementId: string
 }
 
-class SellerPanelHolder {
+export class SellerPanelHolder {
     public paths: SellerPanelPath[];
     public activePath?: SellerPanelPath;
 
@@ -21,7 +21,7 @@ class SellerPanelHolder {
     }
 }
 
-class SellerPanelContextHolder {
+export class SellerPanelContextHolder {
     public holder: SellerPanelHolder;
     private readonly updateHolder: (val: SellerPanelHolder) => any;
 
@@ -66,7 +66,11 @@ class SellerPanelContextHolder {
     }
 
     public scrollToPath(elementId: string) {
-        document.getElementById(elementId)?.scrollIntoView(true);
+        if (this.holder.paths[0].elementId === elementId) {
+            document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "center"});
+        } else {
+            document.getElementById(elementId)?.scrollIntoView({behavior: "smooth", block: "start"});
+        }
     }
 
     private update() {
@@ -80,58 +84,3 @@ class SellerPanelContextHolder {
 export const SellerPanelContext = createContext<SellerPanelContextHolder>(new SellerPanelContextHolder(new SellerPanelHolder(), () => {
 }));
 
-export const SellerPanelProvider = (props: PropsWithChildren<any>) => {
-    const [holder, updateHolder] = useState<SellerPanelHolder>(new SellerPanelHolder());
-    const holderState = {holder, updateHolder};
-
-    useEffect(() => {
-        const listener = () => {
-            if (holder.paths.length === 0) {
-                return;
-            }
-            let newActiveElId = smallestTopOffset(holder.paths.map(p => p.elementId));
-            if (newActiveElId !== holder.activePath?.elementId) {
-                updateHolder(new SellerPanelHolder(holder.paths,
-                    holder.paths.find(p => p.elementId === newActiveElId)));
-            }
-        };
-        window.addEventListener('wheel', listener);
-
-        return () => {
-            window.removeEventListener('wheel', listener);
-        }
-    }, [holder])
-
-    return (
-        <SellerPanelContext.Provider value={new SellerPanelContextHolder(holderState.holder, holderState.updateHolder)}>
-            {
-                props.children
-            }
-        </SellerPanelContext.Provider>
-    )
-}
-
-function smallestTopOffset(elIds: string[]): string {
-    let searchedId = "";
-    let smallestOffset = 10000;
-    for (let i = 0; i < elIds.length; i++) {
-        let id = elIds[i];
-        let el = document.getElementById(id);
-
-        if (el === null || el === undefined) {
-            continue;
-        }
-
-        let box = el.getBoundingClientRect();
-        if (searchedId === "") {
-            searchedId = id;
-            smallestOffset = Math.abs(box.top);
-        }
-        if (Math.abs(box.top) < smallestOffset) {
-            searchedId = id;
-            smallestOffset = Math.abs(box.top);
-        }
-    }
-
-    return searchedId;
-}

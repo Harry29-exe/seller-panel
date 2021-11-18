@@ -6,9 +6,9 @@ import {ChartDataInfo, DataRow} from "../logic/ChartData";
 
 const margins = {
     top: 5,
-    right: 20,
+    right: 25,
     bottom: 5,
-    left: -10
+    left: -5
 }
 
 const Chart = (props: { chartData: ChartDataInfo }) => {
@@ -47,13 +47,13 @@ const Chart = (props: { chartData: ChartDataInfo }) => {
                     <CartesianGrid stroke={"rgba(204,204,204,0.4)"}/>
                     <XAxis dataKey="x"/>
                     <YAxis/>
-                    <Line type="monotone" dataKey="y1" stroke={chartInfo.firstSetColor.toRGBA()}
+                    <Line type="monotone" dataKey="y1" stroke={chartInfo.firstSetColor.toRGBA()} strokeWidth="2px"
                           dot={{
                               fill: chartInfo.firstSetColor.toRGBA(0.6),
                               stroke: chartInfo.firstSetColor.toRGBA(0.6)
                           }}/>
                     {chartProps.info.secondDataSet &&
-                    <Line type="monotone" dataKey="y2" stroke={chartInfo.secondSetColor.toRGBA()}
+                    <Line type="monotone" dataKey="y2" stroke={chartInfo.secondSetColor.toRGBA()} strokeWidth="2px"
                           dot={{
                               fill: chartInfo.secondSetColor.toRGBA(0.6),
                               stroke: chartInfo.secondSetColor.toRGBA(0.6)

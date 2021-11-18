@@ -4,8 +4,8 @@ import SalesChart from "./SalesChart";
 import BuyersReviews from "./BuyersReviews";
 import Orders from './Orders';
 import {AuthContext} from "../contexts/AuthContext";
-import {SellerPanelProvider} from "../contexts/SellerPanelContext";
 import SellerPanelNavbar from "../molecules/SellerPanelNavbar";
+import {SellerPanelProvider} from "../contexts/SellerPanelProvider";
 
 const SellerDashboard = () => {
     const authContext = useContext(AuthContext);
@@ -20,10 +20,10 @@ const SellerDashboard = () => {
         return (
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
-                <VStack spacing={6} mt={5} mb={12}>
+                <VStack spacing={16} mt={3} mb={12}>
                     <SalesChart/>
-                    <Orders/>
                     <BuyersReviews/>
+                    <Orders/>
                 </VStack>
             </SellerPanelProvider>
         );

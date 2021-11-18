@@ -16,7 +16,7 @@ const ComponentBg = (props: ComponentBGProps) => {
 
     return (
         <Box sx={rest} bg={bgColor} borderRadius={"md"}
-             shadow={`2px 2px 3px 3px ${shadowColor}`} w={width} px={[3, 5, 5]}>
+             shadow={`2px 2px 3px 3px ${shadowColor}`} w={width} px={[3, 5, 5]} py={5}>
             {children}
         </Box>
     );

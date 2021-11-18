@@ -9,6 +9,7 @@ import {defineMessages, IntlProvider, useIntl} from "react-intl";
 import {frontendAddress} from "./logic/ServerAddress";
 import SellerDashboard from "./views/SellerDashboard";
 import ServiceMockPage from "./views/ServiceMockPage";
+import OrdersPage from "./views/OrdersPage";
 
 const pageTitlesMessages = defineMessages({
     home: {
@@ -24,7 +25,8 @@ const pageTitlesMessages = defineMessages({
     //     defaultMessage: "Orders"
     // }
     sellerDashboard: {
-        id: "Seller dashboard"
+        id: "sellerDashboard",
+        defaultMessage: "Seller dashboard",
     }
 })
 
@@ -48,8 +50,7 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                     <Routes>
                         <Route path={"/"} element={<ServiceMockPage/>}/>
                         <Route path={"/seller-dashboard"} element={<SellerDashboard/>}/>
-                        {/*<Route path={"/buyers-opinions"} element={<BuyersReviews/>}/>*/}
-                        {/*<Route path={"/orders"} element={<Orders/>}/>*/}
+                        <Route path={"/seller-dashboard/orders"} element={<OrdersPage/>}/>
                     </Routes>
             </Box>
 
