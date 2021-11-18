@@ -42,25 +42,28 @@ const BuyersReviews = () => {
     return (
         <ComponentBg w={["90%", "90%", "700px", "850px", "950px"]}
                      maxH="calc(92vh - 70px)"
-                     mx={"auto"} mt="4vh" mb="4vh" p={[5, 7, 10]}
-                     bg={bgColor} overflowY="auto"
+                     mx={"auto"} my="4vh" px={[3, 5, 5]} pb={1} pt={[3, 5]}
+                     bg={bgColor}
         >
-            <VStack spacing={10}>
+            <VStack spacing={3} p={[3, 5]}>
                 <Box w={"100%"}>
                     <BuyerReviewsFilter setOpinionsType={setOpinionsType}/>
                     <Divider mt={5} w="100%"/>
                 </Box>
 
-                {opinionsToDisplay.length > 0 ?
-                    opinionsToDisplay.map((o, i) =>
-                        <BuyerReview key={i} name={o.name} rating={o.rating} comment={o.comment}/>
-                    )
-                    :
-                    <Center fontSize="lg" fontWeight={600}>
-                        <FormattedMessage id="BuyersOpinions_NoOpinionsMatchingCriteria"
-                                          defaultMessage={"Could not find any reviews matching given criteria"}/>
-                    </Center>
-                }
+                <VStack overflowY="auto" w="100%" h="70vh" px={[3, 5]} pt={4} pb={1} spacing={10}
+                        borderBottom={"1px solid rgba(1, 1, 1, 1)"}>
+                    {opinionsToDisplay.length > 0 ?
+                        opinionsToDisplay.map((o, i) =>
+                            <BuyerReview key={i} name={o.name} rating={o.rating} comment={o.comment}/>
+                        )
+                        :
+                        <Center fontSize="lg" fontWeight={600}>
+                            <FormattedMessage id="BuyersOpinions_NoOpinionsMatchingCriteria"
+                                              defaultMessage={"Could not find any reviews matching given criteria"}/>
+                        </Center>
+                    }
+                </VStack>
 
             </VStack>
         </ComponentBg>

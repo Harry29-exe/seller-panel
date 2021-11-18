@@ -16,7 +16,7 @@
 ::-webkit-scrollbar-thumb {
     /*border: 1px solid black;*/
     background: #eb8836;
-    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.3);
     /*background: #4299E1;*/
     padding-bottom: 5px;
     padding-top: 5px;
