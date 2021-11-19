@@ -131,4 +131,13 @@ def opinions(user):
     else:
         return jsonify([])
 
+
+@app.route("/orders-count/<user>")
+def getOrdersCount(user):
+    return {
+        "notSend": 16,
+        "notPaid": 21,
+        "returns": 5
+    }
+
 # app.run()

@@ -1,10 +1,11 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ComponentBg from "../atomics/ComponentBG";
 import {Center, Divider, Skeleton, Table, Tbody, Td, Th, Thead, Tr, useBreakpointValue, VStack} from "@chakra-ui/react";
 import {defineMessages, FormattedMessage, MessageDescriptor, useIntl} from "react-intl";
 import SellerPanelWidgetPin from "../molecules/SellerPanelWidgetPin";
 import OrderLink from '../molecules/OrderLink';
 import {AuthContext} from "../contexts/AuthContext";
+import backendAddress from "../logic/ServerAddress";
 
 export const ordersWidgetMessages = defineMessages({
     name: {
@@ -93,11 +94,11 @@ const OrdersWidget = () => {
     const [ordersCount, setOrdersCount] = useState<OrdersCount | null>(null);
     const authContext = useContext(AuthContext);
 
-    // useEffect(() => {
-    //     fetch(`${backendAddress}/orders-count/${authContext.authHolder.activeUser}`)
-    //         .then(response => response.json())
-    //         .then(json => setOrdersCount(json));
-    // }, [authContext]);
+    useEffect(() => {
+        fetch(`${backendAddress}/orders-count/${authContext.authHolder.activeUser}`)
+            .then(response => response.json())
+            .then(json => setOrdersCount(json));
+    }, [authContext]);
 
     const tableSize = useBreakpointValue(["sm", "md"])
 
