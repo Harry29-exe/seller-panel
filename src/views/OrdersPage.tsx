@@ -2,23 +2,31 @@ import React from 'react';
 import {Box, Button, VStack} from "@chakra-ui/react";
 import {ArrowBackIcon} from "@chakra-ui/icons";
 import {Link, useLocation} from 'react-router-dom';
-import {defineMessages} from "react-intl";
+import {MessageDescriptor, useIntl} from "react-intl";
 import ComponentBg from "../atomics/ComponentBG";
+import {ordersWidgetMessages} from './OrdersWidget';
 
-const orderPageMassages = defineMessages({
-    notSend: {
-        id: "OrdersPage_notSend",
-        defaultMessage: "notSend"
+const addressUrlToMessage = (address: string): MessageDescriptor => {
+    switch (address) {
+        case "not-send":
+            return ordersWidgetMessages.notSend;
+        case "not-paid":
+            return ordersWidgetMessages.notPaid;
+        case "not-returned":
+            return ordersWidgetMessages.returns;
+        default:
+            return ordersWidgetMessages.name;
     }
-})
+}
 
 const OrdersPage = () => {
     const location = useLocation();
+    const intl = useIntl();
 
     const pathParts = location.pathname.split("/");
     const ordersType = pathParts[pathParts.length - 1];
 
-    console.log(ordersType);
+    const orderTypeMessage = addressUrlToMessage(ordersType);
     return (
         <ComponentBg mx="auto" my={8}>
             <VStack w="100%" spacing={8} px={[3, 4, 5]}>
@@ -31,7 +39,7 @@ const OrdersPage = () => {
                     </Link>
 
                     <Box fontSize={"xl"} mx="auto" textAlign="center" fontWeight={600}>
-                        {ordersType}
+                        {`${intl.formatMessage(orderTypeMessage)} ${intl.formatMessage(ordersWidgetMessages.orders)}`}
                     </Box>
 
                 </Box>

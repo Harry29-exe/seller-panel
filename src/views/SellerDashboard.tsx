@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Center, VStack} from "@chakra-ui/react";
 import BuyersReviews from "./BuyersReviews";
-import Orders from './Orders';
+import OrdersWidget from './OrdersWidget';
 import {AuthContext} from "../contexts/AuthContext";
 import SellerPanelNavbar from "../molecules/SellerPanelNavbar";
 import {SellerPanelProvider} from "../contexts/SellerPanelProvider";
@@ -21,7 +21,7 @@ const SellerDashboard = () => {
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
                 <VStack spacing={16} mt={12} mb={12}>
-                    <Orders/>
+                    <OrdersWidget/>
                     <ChartModule/>
                     <BuyersReviews/>
                 </VStack>
