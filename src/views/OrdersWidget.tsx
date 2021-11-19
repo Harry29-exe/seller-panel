@@ -1,11 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import ComponentBg from "../atomics/ComponentBG";
-import {Center, Divider, Skeleton, Table, Tbody, Td, Th, Thead, Tr, VStack} from "@chakra-ui/react";
-import {defineMessages, FormattedMessage, useIntl} from "react-intl";
+import {Center, Divider, Skeleton, Table, Tbody, Td, Th, Thead, Tr, useBreakpointValue, VStack} from "@chakra-ui/react";
+import {defineMessages, FormattedMessage, MessageDescriptor, useIntl} from "react-intl";
 import SellerPanelWidgetPin from "../molecules/SellerPanelWidgetPin";
 import OrderLink from '../molecules/OrderLink';
 import {AuthContext} from "../contexts/AuthContext";
-import backendAddress from "../logic/ServerAddress";
 
 export const ordersWidgetMessages = defineMessages({
     name: {
@@ -27,6 +26,10 @@ export const ordersWidgetMessages = defineMessages({
     returns: {
         id: "Orders_returns",
         defaultMessage: "Returns"
+    },
+    goToOrders: {
+        id: "Orders_goToOrders",
+        defaultMessage: "Go to orders"
     }
 })
 
@@ -36,17 +39,85 @@ export interface OrdersCount {
     returns: number
 }
 
+interface OrderTableRowProps {
+    link: string;
+    message: MessageDescriptor;
+    orderCount: number;
+}
+
+const SmallOrderTableRow = (props: OrderTableRowProps) => {
+    const intl = useIntl();
+
+    return (
+        <Tr>
+            <Td>
+                <OrderLink link={props.link}
+                           name={intl.formatMessage(props.message)}
+                />
+            </Td>
+            <Td>
+                {props.orderCount < 0 ?
+                    <Skeleton height="20px"/> :
+                    props.orderCount}
+            </Td>
+        </Tr>
+
+    )
+}
+
+const OrderTableRow = (props: OrderTableRowProps) => {
+    const intl = useIntl();
+
+    return (
+        <Tr>
+            <Td>
+                <OrderLink link={props.link}
+                           name={intl.formatMessage(ordersWidgetMessages.goToOrders)}
+                />
+            </Td>
+
+            <Td fontWeight={600}>
+                {intl.formatMessage(props.message)}
+            </Td>
+
+            <Td>
+                {props.orderCount < 0 ?
+                    <Skeleton height="20px"/> :
+                    props.orderCount}
+            </Td>
+        </Tr>
+    )
+}
+
 const OrdersWidget = () => {
     const [ordersCount, setOrdersCount] = useState<OrdersCount | null>(null);
     const authContext = useContext(AuthContext);
 
-    useEffect(() => {
-        fetch(`${backendAddress}/orders-count/${authContext.authHolder.activeUser}`)
-            .then(response => response.json())
-            .then(json => setOrdersCount(json));
-    }, [authContext])
-    const intl = useIntl();
+    // useEffect(() => {
+    //     fetch(`${backendAddress}/orders-count/${authContext.authHolder.activeUser}`)
+    //         .then(response => response.json())
+    //         .then(json => setOrdersCount(json));
+    // }, [authContext]);
 
+    const tableSize = useBreakpointValue(["sm", "md"])
+
+    const rows = [
+        {
+            link: "/seller-dashboard/orders/not-paid",
+            message: ordersWidgetMessages.notPaid,
+            orderCount: ordersCount ? ordersCount.notPaid : -1
+        },
+        {
+            link: "/seller-dashboard/orders/not-send",
+            message: ordersWidgetMessages.notSend,
+            orderCount: ordersCount ? ordersCount.notSend : -1
+        },
+        {
+            link: "/seller-dashboard/orders/returns",
+            message: ordersWidgetMessages.returns,
+            orderCount: ordersCount ? ordersCount.notSend : -1
+        }
+    ];
 
     return (
         <ComponentBg>
@@ -58,37 +129,32 @@ const OrdersWidget = () => {
                 </Center>
                 <Divider w={"95%"}/>
 
-                <Table fontSize={"lg"} fontWeight={500}>
+                <Table fontSize={"lg"} fontWeight={500} size={tableSize}>
                     <Thead>
                         <Tr>
-                            <Th><FormattedMessage id="Orders_ordersPage" defaultMessage="View orders"/></Th>
+                            <Th w={["750px", "100px", "150px"]}><FormattedMessage id="Orders_goToOrders"
+                                                                                  defaultMessage="Go to orders"/></Th>
+                            {tableSize !== "sm" &&
                             <Th><FormattedMessage id="Orders_ordersType" defaultMessage="Orders type"/></Th>
+                            }
                             <Th><FormattedMessage id="Orders_ordersCount" defaultMessage="Count"/></Th>
                         </Tr>
                     </Thead>
                     <Tbody>
-                        <Tr>
-                            <Td></Td>
-                            <Td>{intl.formatMessage(ordersWidgetMessages.notSend)}</Td>
-                            <Td>{ordersCount === null ? <Skeleton height="20px"/> : ordersCount.notSend}</Td>
-                        </Tr>
-                        <Tr>
-                            <Td>
-                                <OrderLink w={["90%", "70%", "60%"]} link={"/seller-dashboard/orders/not-paid"}
-                                           name={intl.formatMessage(ordersWidgetMessages.notPaid)}/>
-                            </Td>
-                            <Td>{intl.formatMessage(ordersWidgetMessages.notPaid)}</Td>
-                            <Td>{ordersCount === null ? <Skeleton height="20px"/> : ordersCount.notPaid}</Td>
-
-                        </Tr>
-                        <Tr>
-                            <Td>
-                                <OrderLink w={["90%", "70%", "60%"]} link={"/seller-dashboard/orders/returns"}
-                                           name={intl.formatMessage(ordersWidgetMessages.returns)}/>
-                            </Td>
-                            <Td>{intl.formatMessage(ordersWidgetMessages.returns)}</Td>
-                            <Td>{ordersCount === null ? <Skeleton height="20px"/> : ordersCount.returns}</Td>
-                        </Tr>
+                        {tableSize !== "sm" ?
+                            rows.map(r =>
+                                <OrderTableRow key={r.link} link={r.link}
+                                               message={r.message} orderCount={r.orderCount}
+                                />
+                            )
+                            // <div/>
+                            :
+                            rows.map(r =>
+                                <SmallOrderTableRow key={r.link} link={r.link}
+                                                    message={r.message} orderCount={r.orderCount}
+                                />
+                            )
+                        }
                     </Tbody>
                 </Table>
 
