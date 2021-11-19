@@ -6,6 +6,7 @@ import SellerPanelWidgetPin from "../molecules/SellerPanelWidgetPin";
 import OrderLink from '../molecules/OrderLink';
 import {AuthContext} from "../contexts/AuthContext";
 import backendAddress from "../logic/ServerAddress";
+import NoOrdersBanner from "../molecules/NoOrdersBanner";
 
 export const ordersWidgetMessages = defineMessages({
     name: {
@@ -159,6 +160,10 @@ const OrdersWidget = () => {
                     </Tbody>
                 </Table>
 
+                {(ordersCount !== null && ordersCount?.notSend === 0 &&
+                    ordersCount.notPaid === 0 && ordersCount.returns === 0) &&
+                <NoOrdersBanner/>
+                }
             </VStack>
         </ComponentBg>
     );

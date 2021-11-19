@@ -133,11 +133,24 @@ def opinions(user):
 
 
 @app.route("/orders-count/<user>")
-def getOrdersCount(user):
-    return {
-        "notSend": 16,
-        "notPaid": 21,
-        "returns": 5
-    }
+def get_orders_count(user):
+    if user == "Alex":
+        return {
+            "notSend": 16,
+            "notPaid": 21,
+            "returns": 5
+        }
+    elif user == "Frank":
+        return {
+            "notSend": 13,
+            "notPaid": 9,
+            "returns": 3
+        }
+    else:
+        return {
+            "notSend": 0,
+            "notPaid": 0,
+            "returns": 0
+        }
 
 # app.run()
