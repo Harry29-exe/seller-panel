@@ -21,9 +21,9 @@ const SellerDashboard = () => {
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
                 <VStack spacing={16} mt={12} mb={12}>
+                    <Orders/>
                     <ChartModule/>
                     <BuyersReviews/>
-                    <Orders/>
                 </VStack>
             </SellerPanelProvider>
         );

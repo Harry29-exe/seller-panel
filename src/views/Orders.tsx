@@ -1,29 +1,51 @@
 import React from 'react';
-import WidgetBg from "../atomics/ComponentBG";
-import {Center, Stack, VStack} from "@chakra-ui/react";
-import {defineMessage, FormattedMessage} from "react-intl";
+import ComponentBg from "../atomics/ComponentBG";
+import {Center, Divider, Flex, VStack} from "@chakra-ui/react";
+import {defineMessages, FormattedMessage, useIntl} from "react-intl";
 import SellerPanelWidgetPin from "../molecules/SellerPanelWidgetPin";
-import Order from '../molecules/Order';
+import OrderLink from '../molecules/OrderLink';
 
-const ordersWidgetName = defineMessage({
-    id: "Orders_name",
-    defaultMessage: "Orders"
+const ordersWidgetMessages = defineMessages({
+    name: {
+        id: "Orders_name",
+        defaultMessage: "Orders"
+    },
+    notPaid: {
+        id: "Orders_notPaid",
+        defaultMessage: "Not paid"
+    },
+    notSend: {
+        id: "Orders_notSend",
+        defaultMessage: "Not send"
+    },
+    returns: {
+        id: "Orders_returns",
+        defaultMessage: "Returns"
+    }
 })
 
 const Orders = () => {
+    const intl = useIntl();
+
     return (
-        <WidgetBg>
-            <SellerPanelWidgetPin message={ordersWidgetName} elementId={"orders"}/>
-            <VStack>
-                <Center fontSize="lg" fontWeight={600}>
+        <ComponentBg>
+            <SellerPanelWidgetPin message={ordersWidgetMessages.name} elementId={"orders"}/>
+            <VStack w={"100%"} spacing={6}>
+                <Center fontSize="lg" fontWeight={600} px={5} textAlign="center">
                     <FormattedMessage id="Orders_chooseOrderType"
                                       defaultMessage="Please choose order type to go to orders page"/>
                 </Center>
-                <Stack>
-                    <Order/>
-                </Stack>
+                <Divider w={"95%"}/>
+                <Flex w={"100%"} flexFlow="wrap" flexWrap="wrap" justifyContent="space-evenly">
+                    <OrderLink w={["90%", "70%", "60%"]} link={"/seller-dashboard/orders/not-send"}
+                               name={intl.formatMessage(ordersWidgetMessages.notSend)}/>
+                    <OrderLink w={["90%", "70%", "60%"]} link={"/seller-dashboard/orders/not-paid"}
+                               name={intl.formatMessage(ordersWidgetMessages.notPaid)}/>
+                    <OrderLink w={["90%", "70%", "60%"]} link={"/seller-dashboard/orders/returns"}
+                               name={intl.formatMessage(ordersWidgetMessages.returns)}/>
+                </Flex>
             </VStack>
-        </WidgetBg>
+        </ComponentBg>
     );
 };
 

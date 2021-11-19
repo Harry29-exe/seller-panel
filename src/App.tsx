@@ -54,7 +54,7 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                     <Routes>
                         <Route path={"/"} element={<ServiceMockPage/>}/>
                         <Route path={"/seller-dashboard"} element={<SellerDashboard/>}/>
-                        <Route path={"/seller-dashboard/orders"} element={<OrdersPage/>}/>
+                        <Route path={"/seller-dashboard/orders/*"} element={<OrdersPage/>}/>
                     </Routes>
 
                 </Box>
