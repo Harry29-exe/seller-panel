@@ -1,4 +1,22 @@
 {
+  "BuyerOpinions_all": {
+    "defaultMessage": "All"
+  },
+  "BuyerOpinions_last5": {
+    "defaultMessage": "Last five message"
+  },
+  "BuyerOpinions_negative": {
+    "defaultMessage": "All negative"
+  },
+  "BuyerOpinions_opinionsToDisplay": {
+    "defaultMessage": "Select what opinions you want to be displayed:"
+  },
+  "BuyerOpinions_positive": {
+    "defaultMessage": "All positive"
+  },
+  "BuyersOpinions_NoOpinionsMatchingCriteria": {
+    "defaultMessage": "Could not find any reviews matching given criteria"
+  },
   "ChartModule_GREETINGS": {
     "defaultMessage": "Sales chart",
     "description": "chart view greeting"
@@ -27,13 +45,46 @@
   "ChartModule_year": {
     "defaultMessage": "Year"
   },
-  "buyersOpinions": {
-    "defaultMessage": "Buyers Opinions"
+  "Orders_NoOrders": {
+    "defaultMessage": "You have no active orders, would you like to use our offer promotion service"
+  },
+  "Orders_chooseOrderType": {
+    "defaultMessage": "Please choose order type to go to orders page"
+  },
+  "Orders_goToOrders": {
+    "defaultMessage": "Go to orders"
+  },
+  "Orders_name": {
+    "defaultMessage": "Orders"
+  },
+  "Orders_notPaid": {
+    "defaultMessage": "Not paid"
+  },
+  "Orders_notSend": {
+    "defaultMessage": "Not send"
+  },
+  "Orders_orders": {
+    "defaultMessage": "orders"
+  },
+  "Orders_ordersCount": {
+    "defaultMessage": "Count"
+  },
+  "Orders_ordersType": {
+    "defaultMessage": "Orders type"
+  },
+  "Orders_returns": {
+    "defaultMessage": "Returns"
+  },
+  "buyersReviews": {
+    "defaultMessage": "Buyers reviews"
   },
   "home": {
     "defaultMessage": "Home"
   },
-  "orders": {
-    "defaultMessage": "Orders"
+  "salesChart": {
+    "defaultMessage": "Sales chart"
+  },
+  "sellerDashboard": {
+    "defaultMessage": "Seller dashboard"
   }
 }

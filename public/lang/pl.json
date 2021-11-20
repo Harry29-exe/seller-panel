@@ -1,4 +1,40 @@
 {
+  "BuyerOpinions_all": [
+    {
+      "type": 0,
+      "value": "Wszystkie"
+    }
+  ],
+  "BuyerOpinions_last5": [
+    {
+      "type": 0,
+      "value": "Ostatnie pięć"
+    }
+  ],
+  "BuyerOpinions_negative": [
+    {
+      "type": 0,
+      "value": "Wszystkie negatywne"
+    }
+  ],
+  "BuyerOpinions_opinionsToDisplay": [
+    {
+      "type": 0,
+      "value": "Wybierz jakie opinie chcesz wyświetlić:"
+    }
+  ],
+  "BuyerOpinions_positive": [
+    {
+      "type": 0,
+      "value": "Wszystkie pozytywne"
+    }
+  ],
+  "BuyersOpinions_NoOpinionsMatchingCriteria": [
+    {
+      "type": 0,
+      "value": "Nie mogliśmy znaleźć żadnych opini pasujących do podanych kryteriów"
+    }
+  ],
   "ChartModule_GREETINGS": [
     {
       "type": 0,
@@ -53,22 +89,94 @@
       "value": "Rok"
     }
   ],
+  "Orders_NoOrders": [
+    {
+      "type": 0,
+      "value": "Nie masz żadnych aktywnych zamówień, czy chciałbyś skorzystać z naszej usługi promowania ofert?"
+    }
+  ],
+  "Orders_chooseOrderType": [
+    {
+      "type": 0,
+      "value": "Proszę wybrać typ zamówień aby przejść do strony zamówień"
+    }
+  ],
+  "Orders_goToOrders": [
+    {
+      "type": 0,
+      "value": "Idz Do zamówień"
+    }
+  ],
+  "Orders_name": [
+    {
+      "type": 0,
+      "value": "Zamówienia"
+    }
+  ],
+  "Orders_notPaid": [
+    {
+      "type": 0,
+      "value": "Nie opłacone"
+    }
+  ],
+  "Orders_notSend": [
+    {
+      "type": 0,
+      "value": "Nie wysłane"
+    }
+  ],
+  "Orders_orders": [
+    {
+      "type": 0,
+      "value": "zamówienia"
+    }
+  ],
+  "Orders_ordersCount": [
+    {
+      "type": 0,
+      "value": "Ilość"
+    }
+  ],
+  "Orders_ordersType": [
+    {
+      "type": 0,
+      "value": "Typ zamówień"
+    }
+  ],
+  "Orders_returns": [
+    {
+      "type": 0,
+      "value": "Zwroty"
+    }
+  ],
   "buyersOpinions": [
     {
       "type": 0,
       "value": "Opinie kupujących"
     }
   ],
+  "buyersReviews": [
+    {
+      "type": 0,
+      "value": "Opinie klientów"
+    }
+  ],
   "home": [
     {
       "type": 0,
-      "value": "Home"
+      "value": "Strona Główna"
     }
   ],
-  "orders": [
+  "salesChart": [
     {
       "type": 0,
-      "value": "Zamówienia"
+      "value": "Wykres sprzedaży"
+    }
+  ],
+  "sellerDashboard": [
+    {
+      "type": 0,
+      "value": "Panel sprzedawcy"
     }
   ]
 }

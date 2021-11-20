@@ -1,4 +1,22 @@
 {
+  "BuyerOpinions_all": {
+    "defaultMessage": "Wszystkie"
+  },
+  "BuyerOpinions_last5": {
+    "defaultMessage": "Ostatnie pięć"
+  },
+  "BuyerOpinions_negative": {
+    "defaultMessage": "Wszystkie negatywne"
+  },
+  "BuyerOpinions_opinionsToDisplay": {
+    "defaultMessage": "Wybierz jakie opinie chcesz wyświetlić:"
+  },
+  "BuyerOpinions_positive": {
+    "defaultMessage": "Wszystkie pozytywne"
+  },
+  "BuyersOpinions_NoOpinionsMatchingCriteria": {
+    "defaultMessage": "Nie mogliśmy znaleźć żadnych opini pasujących do podanych kryteriów"
+  },
   "ChartModule_GREETINGS": {
     "defaultMessage": "Wykres sprzedarzy",
     "description": "chart view greeting"
@@ -30,10 +48,46 @@
   "buyersOpinions": {
     "defaultMessage": "Opinie kupujących"
   },
-  "home": {
-    "defaultMessage": "Home"
+  "Orders_NoOrders": {
+    "defaultMessage": "Nie masz żadnych aktywnych zamówień, czy chciałbyś skorzystać z naszej usługi promowania ofert?"
   },
-  "orders": {
+  "Orders_chooseOrderType": {
+    "defaultMessage": "Proszę wybrać typ zamówień aby przejść do strony zamówień"
+  },
+  "Orders_goToOrders": {
+    "defaultMessage": "Idz Do zamówień"
+  },
+  "Orders_name": {
     "defaultMessage": "Zamówienia"
+  },
+  "Orders_notPaid": {
+    "defaultMessage": "Nie opłacone"
+  },
+  "Orders_notSend": {
+    "defaultMessage": "Nie wysłane"
+  },
+  "Orders_orders": {
+    "defaultMessage": "zamówienia"
+  },
+  "Orders_ordersCount": {
+    "defaultMessage": "Ilość"
+  },
+  "Orders_ordersType": {
+    "defaultMessage": "Typ zamówień"
+  },
+  "Orders_returns": {
+    "defaultMessage": "Zwroty"
+  },
+  "buyersReviews": {
+    "defaultMessage": "Opinie klientów"
+  },
+  "home": {
+    "defaultMessage": "Strona Główna"
+  },
+  "salesChart": {
+    "defaultMessage": "Wykres sprzedaży"
+  },
+  "sellerDashboard": {
+    "defaultMessage": "Panel sprzedawcy"
   }
 }
