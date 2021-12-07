@@ -1,3 +1,4 @@
-flask
-flask_cors
-flask-heroku
+Flask
+Flask_cors
+Flask-heroku
+gunicorn

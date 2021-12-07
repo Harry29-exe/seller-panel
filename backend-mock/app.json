@@ -1,0 +1,10 @@
+{
+  "name": "Start on Heroku: Python",
+  "description": "A barebones Python app, which can easily be deployed to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://github.com/Harry29-exe/seller-panel",
+  "keywords": [
+    "python",
+    "flask"
+  ]
+}
