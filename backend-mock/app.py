@@ -153,4 +153,4 @@ def get_orders_count(user):
             "returns": 0
         }
 
-# app.run()
+app.run()
