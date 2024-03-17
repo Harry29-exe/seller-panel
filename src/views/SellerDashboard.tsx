@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {PropsWithChildren, useContext} from 'react';
 import {Center, VStack} from "@chakra-ui/react";
 import BuyersReviews from "./BuyersReviews";
 import OrdersWidget from './OrdersWidget';
@@ -7,7 +7,7 @@ import SellerPanelNavbar from "../molecules/SellerPanelNavbar";
 import {SellerPanelProvider} from "../contexts/SellerPanelProvider";
 import ChartModule from "../molecules/ChartModule";
 
-const SellerDashboard = () => {
+const SellerDashboard = (props: PropsWithChildren<any>) => {
     const authContext = useContext(AuthContext);
 
     if (!authContext.isLogged()) {
@@ -21,9 +21,10 @@ const SellerDashboard = () => {
             <SellerPanelProvider>
                 <SellerPanelNavbar/>
                 <VStack spacing={16} mt={12} mb={12}>
-                    <OrdersWidget/>
-                    <ChartModule/>
-                    <BuyersReviews/>
+                    {props.children}
+                    {/*<OrdersWidget/>*/}
+                    {/*<ChartModule/>*/}
+                    {/*<BuyersReviews/>*/}
                 </VStack>
             </SellerPanelProvider>
         );

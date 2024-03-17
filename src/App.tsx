@@ -10,6 +10,10 @@ import {frontendAddress} from "./logic/ServerAddress";
 import SellerDashboard from "./views/SellerDashboard";
 import ServiceMockPage from "./views/ServiceMockPage";
 import OrdersPage from "./views/OrdersPage";
+import OrdersWidget from "./views/OrdersWidget";
+import ChartModule from "./molecules/ChartModule";
+import BuyersReviews from "./views/BuyersReviews";
+import {AdvancedForm} from "./views/AdvancedForm";
 
 const pageTitlesMessages = defineMessages({
     home: {
@@ -27,6 +31,22 @@ const pageTitlesMessages = defineMessages({
     sellerDashboard: {
         id: "sellerDashboard",
         defaultMessage: "Seller dashboard",
+    },
+    orders: {
+        id: "orders",
+        defaultMessage: "Orders",
+    },
+    chart: {
+        id: "chat",
+        defaultMessage: "Sell chart",
+    },
+    reviews: {
+        id: "reviews",
+        defaultMessage: "Reviews",
+    },
+    contact: {
+        id: 'contact',
+        defaultMessage: "Contact",
     }
 })
 
@@ -47,14 +67,22 @@ export const AppRoutes = (props: { setLang: (lang: string) => any }) => {
                         // isNavbarOn={isNavbarOn} navbarOn={on} navbarOff={off}
                         routes={[
                             {name: intl.formatMessage(pageTitlesMessages.home), path: "/"},
-                            {name: intl.formatMessage(pageTitlesMessages.sellerDashboard), path: "/seller-dashboard"}
+                            // {name: intl.formatMessage(pageTitlesMessages.sellerDashboard), path: "/seller-dashboard"},
+                            {name: intl.formatMessage(pageTitlesMessages.orders), path: "/seller-dashboard/orders-widget"},
+                            {name: intl.formatMessage(pageTitlesMessages.chart), path: "/seller-dashboard/chart"},
+                            {name: intl.formatMessage(pageTitlesMessages.reviews), path: "/seller-dashboard/buyers-reviews"},
+                            {name: intl.formatMessage(pageTitlesMessages.contact), path: "/seller-dashboard/contact"},
                         ]} updateLanguage={(lang) => props.setLang(lang)}/>
                     <Box w={1} h={"70px"}/>
 
                     <Routes>
                         <Route path={"/"} element={<ServiceMockPage/>}/>
                         <Route path={"/seller-dashboard"} element={<SellerDashboard/>}/>
+                        <Route path={"/seller-dashboard/orders-widget"} element={<SellerDashboard><OrdersWidget/></SellerDashboard>}/>
+                        <Route path={"/seller-dashboard/chart"} element={<SellerDashboard><ChartModule/></SellerDashboard>}/>
+                        <Route path={"/seller-dashboard/buyers-reviews"} element={<SellerDashboard><BuyersReviews/></SellerDashboard>}/>
                         <Route path={"/seller-dashboard/orders/*"} element={<OrdersPage/>}/>
+                        <Route path={"/seller-dashboard/contact"} element={<AdvancedForm/>}/>
                     </Routes>
 
                 </Box>
